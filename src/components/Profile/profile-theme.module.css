@@ -1,0 +1,537 @@
+.scope {
+  --profile-paper: var(--profile-light-paper);
+  --profile-paper-foreground: var(--profile-light-paper-foreground);
+  --profile-surface: var(--profile-light-surface);
+  --profile-surface-foreground: var(--profile-light-surface-foreground);
+  --profile-ink: var(--profile-light-ink);
+  --profile-muted: var(--profile-light-muted);
+  --profile-accent: var(--profile-light-accent);
+  --profile-accent-foreground: var(--profile-light-accent-foreground);
+  --profile-accent-secondary: var(--profile-light-accent-secondary);
+  --profile-line: var(--profile-light-line);
+  --profile-link: var(--profile-light-link);
+  --profile-focus: var(--profile-light-focus);
+  --profile-wash: var(--profile-light-wash);
+  --profile-image-scrim-strong: var(--profile-light-image-scrim-strong);
+  --profile-image-scrim-soft: var(--profile-light-image-scrim-soft);
+  --profile-text-support: var(--profile-light-text-support);
+  --profile-texture-opacity: var(--profile-light-texture-opacity);
+  --profile-shell-width: 104rem;
+
+  color: var(--profile-paper-foreground);
+}
+
+:global(.dark) .scope {
+  --profile-paper: var(--profile-dark-paper);
+  --profile-paper-foreground: var(--profile-dark-paper-foreground);
+  --profile-surface: var(--profile-dark-surface);
+  --profile-surface-foreground: var(--profile-dark-surface-foreground);
+  --profile-ink: var(--profile-dark-ink);
+  --profile-muted: var(--profile-dark-muted);
+  --profile-accent: var(--profile-dark-accent);
+  --profile-accent-foreground: var(--profile-dark-accent-foreground);
+  --profile-accent-secondary: var(--profile-dark-accent-secondary);
+  --profile-line: var(--profile-dark-line);
+  --profile-link: var(--profile-dark-link);
+  --profile-focus: var(--profile-dark-focus);
+  --profile-wash: var(--profile-dark-wash);
+  --profile-image-scrim-strong: var(--profile-dark-image-scrim-strong);
+  --profile-image-scrim-soft: var(--profile-dark-image-scrim-soft);
+  --profile-text-support: var(--profile-dark-text-support);
+  --profile-texture-opacity: var(--profile-dark-texture-opacity);
+}
+
+.page {
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 4rem);
+  flex: 1 0 auto;
+  overflow-x: clip;
+  background:
+    radial-gradient(ellipse 42rem 25rem at 82% -5%, color-mix(in oklch, var(--profile-wash) 8%, transparent), transparent 72%),
+    var(--profile-paper);
+  isolation: isolate;
+}
+
+.pageAtmosphere,
+.pageAtmosphere > i {
+  position: absolute;
+  pointer-events: none;
+}
+
+.pageAtmosphere {
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  contain: paint;
+}
+
+.pageAtmosphere > i {
+  display: block;
+  margin: 0;
+}
+
+.scope[data-profile-preset='apple-studio'].page {
+  background:
+    radial-gradient(ellipse 44rem 25rem at 7% -6%, rgb(111 190 255 / 12%), transparent 70%),
+    radial-gradient(ellipse 40rem 24rem at 92% -3%, rgb(255 177 210 / 8%), transparent 72%),
+    linear-gradient(
+      180deg,
+      color-mix(in oklch, var(--profile-paper) 96%, white 4%) 0,
+      color-mix(in oklch, var(--profile-paper) 82%, transparent) 17rem,
+      transparent 36rem
+    ),
+    var(--profile-paper);
+}
+
+.scope[data-profile-preset='daybreak'].page {
+  background:
+    linear-gradient(112deg, color-mix(in oklch, var(--profile-accent) 5%, transparent) 0, transparent 27rem),
+    var(--profile-paper);
+}
+
+.scope[data-profile-preset='sea-glass'].page {
+  background:
+    radial-gradient(ellipse 52rem 29rem at 90% -7%, color-mix(in oklch, var(--profile-accent) 13%, transparent), transparent 70%),
+    linear-gradient(
+      180deg,
+      color-mix(in oklch, var(--profile-paper) 92%, #ddecff 8%) 0,
+      color-mix(in oklch, var(--profile-paper) 76%, transparent) 18rem,
+      transparent 40rem
+    ),
+    var(--profile-paper);
+}
+
+.scope[data-profile-preset='peach-haze'].page {
+  background:
+    linear-gradient(138deg, color-mix(in oklch, var(--profile-accent-secondary) 7%, transparent) 0, transparent 29rem),
+    linear-gradient(
+      180deg,
+      color-mix(in oklch, var(--profile-paper) 93%, #fff0e4 7%) 0,
+      color-mix(in oklch, var(--profile-paper) 78%, transparent) 18rem,
+      transparent 44rem
+    ),
+    var(--profile-paper);
+}
+
+.scope[data-profile-preset='lime-air'].page {
+  background:
+    radial-gradient(ellipse 47rem 27rem at 92% -8%, color-mix(in oklch, var(--profile-accent-secondary) 11%, transparent), transparent 72%),
+    linear-gradient(
+      180deg,
+      color-mix(in oklch, var(--profile-paper) 94%, #e9f3df 6%) 0,
+      color-mix(in oklch, var(--profile-paper) 80%, transparent) 17rem,
+      transparent 40rem
+    ),
+    var(--profile-paper);
+}
+
+/* Liquid Glass: broad optical ribbons and a restrained spectral edge. */
+.scope[data-profile-preset='apple-studio'] .pageAtmosphere > i:first-child {
+  top: 27rem;
+  right: -10rem;
+  width: min(45rem, 52vw);
+  height: 20rem;
+  opacity: 0.38;
+  background:
+    linear-gradient(122deg, rgb(255 255 255 / 30%), rgb(255 255 255 / 4%) 48%, rgb(123 180 255 / 13%)),
+    color-mix(in oklch, var(--profile-surface) 44%, transparent);
+  border: 1px solid rgb(255 255 255 / 54%);
+  border-radius: 48% 52% 43% 57% / 55% 41% 59% 45%;
+  box-shadow:
+    inset 1rem 0 2.2rem rgb(255 255 255 / 18%),
+    0 2rem 5rem rgb(75 105 150 / 7%);
+  rotate: -10deg;
+}
+
+.scope[data-profile-preset='apple-studio'] .pageAtmosphere > i:nth-child(2) {
+  top: 43rem;
+  left: -8rem;
+  width: min(38rem, 46vw);
+  height: 12rem;
+  opacity: 0.28;
+  background: linear-gradient(105deg, rgb(114 194 255 / 10%), rgb(255 255 255 / 36%) 51%, rgb(255 181 210 / 10%));
+  border: 1px solid rgb(255 255 255 / 45%);
+  border-radius: 999px;
+  rotate: 9deg;
+}
+
+.scope[data-profile-preset='apple-studio'] .pageAtmosphere > i:last-child {
+  top: 39rem;
+  right: 7%;
+  width: min(31rem, 40vw);
+  height: 1px;
+  opacity: 0.4;
+  background: linear-gradient(90deg, transparent, #8dc8ff, #f0d8ff 54%, #ffcadc, transparent);
+  box-shadow: 0 0 1rem rgb(125 183 255 / 22%);
+  rotate: -13deg;
+}
+
+/* Darkroom: off-canvas paper crops and registration rules. */
+.scope[data-profile-preset='daybreak'] .pageAtmosphere > i:first-child {
+  top: 25rem;
+  right: -17rem;
+  width: min(47rem, 58vw);
+  height: 72rem;
+  opacity: 0.052;
+  background: var(--profile-accent);
+  clip-path: polygon(28% 0, 100% 0, 100% 100%, 0 100%, 17% 58%);
+  rotate: 4deg;
+}
+
+.scope[data-profile-preset='daybreak'] .pageAtmosphere > i:nth-child(2) {
+  top: 39rem;
+  left: 4.5%;
+  width: 1px;
+  height: min(52rem, 42vh);
+  opacity: 0.25;
+  background: linear-gradient(180deg, var(--profile-accent), transparent);
+  box-shadow: 0 0 0 0.35rem color-mix(in oklch, var(--profile-paper) 80%, transparent);
+}
+
+.scope[data-profile-preset='daybreak'] .pageAtmosphere > i:last-child {
+  top: 48rem;
+  right: 8%;
+  width: min(28rem, 34vw);
+  height: 9rem;
+  opacity: 0.12;
+  background: repeating-linear-gradient(180deg, transparent 0 1.45rem, var(--profile-ink) 1.45rem calc(1.45rem + 1px));
+  clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Mica Bay: two suspended acrylic planes with a distant horizon. */
+.scope[data-profile-preset='sea-glass'] .pageAtmosphere > i:first-child,
+.scope[data-profile-preset='sea-glass'] .pageAtmosphere > i:nth-child(2) {
+  background: linear-gradient(140deg, rgb(255 255 255 / 24%), color-mix(in oklch, var(--profile-accent) 7%, transparent));
+  border: 1px solid color-mix(in oklch, var(--profile-accent) 16%, transparent);
+  border-radius: 3.25rem;
+  box-shadow: 0 2rem 5rem rgb(48 105 169 / 6%);
+}
+
+.scope[data-profile-preset='sea-glass'] .pageAtmosphere > i:first-child {
+  top: 28rem;
+  right: -9rem;
+  width: min(38rem, 47vw);
+  height: 27rem;
+  opacity: 0.48;
+  rotate: -9deg;
+}
+
+.scope[data-profile-preset='sea-glass'] .pageAtmosphere > i:nth-child(2) {
+  top: 45rem;
+  right: 9%;
+  width: min(29rem, 36vw);
+  height: 18rem;
+  opacity: 0.3;
+  rotate: 7deg;
+}
+
+.scope[data-profile-preset='sea-glass'] .pageAtmosphere > i:last-child {
+  top: 53rem;
+  left: 0;
+  width: 64%;
+  height: 1px;
+  opacity: 0.3;
+  background: linear-gradient(90deg, transparent, color-mix(in oklch, var(--profile-accent) 55%, transparent), transparent);
+}
+
+/* Coral Press: an arched paper field, halftone ink and a wine-red spine. */
+.scope[data-profile-preset='peach-haze'] .pageAtmosphere > i:first-child {
+  top: 30rem;
+  right: -14rem;
+  width: min(39rem, 48vw);
+  height: 49rem;
+  opacity: 0.07;
+  background: var(--profile-accent);
+  border-radius: 999px 0 0 999px;
+}
+
+.scope[data-profile-preset='peach-haze'] .pageAtmosphere > i:nth-child(2) {
+  top: 43rem;
+  right: 3%;
+  width: min(28rem, 35vw);
+  height: 28rem;
+  opacity: 0.19;
+  background: radial-gradient(circle, color-mix(in oklch, var(--profile-accent-secondary) 52%, transparent) 0 1px, transparent 1.3px);
+  background-size: 0.78rem 0.78rem;
+  border-radius: 50% 0 0 50%;
+}
+
+.scope[data-profile-preset='peach-haze'] .pageAtmosphere > i:last-child {
+  top: 50rem;
+  left: 5.5%;
+  width: 0.3rem;
+  height: 22rem;
+  opacity: 0.14;
+  background: var(--profile-accent-secondary);
+}
+
+/* Night Forest: route telemetry, a chamfered field and signal markers. */
+.scope[data-profile-preset='lime-air'] .pageAtmosphere > i:first-child {
+  top: 30rem;
+  right: -10rem;
+  width: min(42rem, 52vw);
+  height: 34rem;
+  opacity: 0.07;
+  background: var(--profile-accent-secondary);
+  clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%, 11% 48%);
+}
+
+.scope[data-profile-preset='lime-air'] .pageAtmosphere > i:nth-child(2) {
+  top: 43rem;
+  right: -2rem;
+  width: min(36rem, 44vw);
+  height: 2px;
+  opacity: 0.35;
+  background: linear-gradient(90deg, transparent, var(--profile-accent) 21% 78%, transparent);
+  box-shadow: 0 0 1.25rem color-mix(in oklch, var(--profile-accent) 26%, transparent);
+  rotate: -12deg;
+}
+
+.scope[data-profile-preset='lime-air'] .pageAtmosphere > i:last-child {
+  top: 38rem;
+  right: 8%;
+  width: 0.42rem;
+  height: 0.42rem;
+  opacity: 0.45;
+  background: var(--profile-accent);
+  border-radius: 50%;
+  box-shadow:
+    -5rem 8rem 0 color-mix(in oklch, var(--profile-accent) 74%, transparent),
+    -11rem 16rem 0 color-mix(in oklch, var(--profile-accent) 48%, transparent),
+    0 0 1rem color-mix(in oklch, var(--profile-accent) 38%, transparent);
+}
+
+.preview {
+  min-width: 0;
+  color: var(--profile-paper-foreground);
+}
+
+.backdrop {
+  --profile-backdrop-height: 300px;
+  --profile-hero-foreground: #fff;
+  --profile-hero-muted: rgb(255 255 255 / 78%);
+  --profile-hero-subtle: rgb(255 255 255 / 68%);
+  --profile-hero-rule: rgb(255 255 255 / 17%);
+  --profile-image-opacity: 0.55;
+
+  position: relative;
+  width: min(calc(100% - 4rem), var(--profile-shell-width));
+  min-height: clamp(19rem, var(--profile-backdrop-height), 32.5rem);
+  margin-inline: auto;
+  overflow: hidden;
+  color: var(--profile-hero-foreground);
+  background: #17191d;
+  border-radius: clamp(1.35rem, 2.3vw, 2rem);
+  box-shadow: 0 1.4rem 3.4rem rgb(15 18 24 / 13%);
+  isolation: isolate;
+}
+
+.backdropWash,
+.backdropImage,
+.backdropArtwork,
+.backdropProtection {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.backdropImage {
+  z-index: 0;
+  background-repeat: no-repeat;
+  opacity: var(--profile-image-opacity);
+  transform: scale(1.01);
+}
+
+.backdropWash {
+  z-index: 1;
+  overflow: hidden;
+  background:
+    linear-gradient(98deg, #111214 0 55%, rgb(17 18 20 / 35%) 72%),
+    #ff6a34;
+  opacity: var(--profile-wash-opacity, 1);
+  transition: opacity 220ms ease;
+}
+
+.backdrop[data-profile-preset='apple-studio'] {
+  background: #0b0c0f;
+  border: 1px solid rgb(255 255 255 / 10%);
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 8%) inset,
+    0 1.65rem 4.2rem rgb(21 30 48 / 19%);
+}
+
+.backdrop[data-profile-preset='apple-studio'] .backdropWash {
+  background:
+    radial-gradient(ellipse 24rem 30rem at 88% 42%, rgb(69 151 255 / 28%), transparent 70%),
+    radial-gradient(ellipse 17rem 28rem at 72% 12%, rgb(255 177 210 / 12%), transparent 70%),
+    linear-gradient(118deg, #090a0d 0 48%, #121925 72%, #172438 100%);
+}
+
+.backdrop[data-profile-preset='sea-glass'] .backdropWash {
+  background:
+    radial-gradient(ellipse 24rem 31rem at 80% 35%, rgb(68 159 255 / 38%), transparent 70%),
+    linear-gradient(115deg, #071428 0 48%, #0f3769 78%, #0a5472 100%);
+}
+
+.backdrop[data-profile-preset='peach-haze'] .backdropWash {
+  background: linear-gradient(108deg, #25131b 0 54%, #632039 78%, #9d3d42 100%);
+}
+
+.backdrop[data-profile-preset='lime-air'] .backdropWash {
+  background: linear-gradient(112deg, #06130d 0 54%, #0a2b1c 82%, #123c28 100%);
+}
+
+.backdropArtwork {
+  z-index: 2;
+  opacity: var(--profile-artwork-opacity, 1);
+  transition: opacity 220ms ease;
+}
+
+.backdropProtection {
+  z-index: 3;
+  background: var(--profile-hero-protection,
+    linear-gradient(90deg, var(--profile-text-support) 0 31%, var(--profile-image-scrim-soft) 60%, transparent 86%),
+    linear-gradient(0deg, rgb(5 7 10 / 30%), transparent 55%));
+}
+
+.backdropContent {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  width: 100%;
+  min-height: clamp(19rem, var(--profile-backdrop-height), 32.5rem);
+  align-items: stretch;
+  padding: clamp(1.4rem, 3.2vw, 3.35rem);
+}
+
+.backdrop[data-variant='preview'] {
+  width: 100%;
+  min-height: min(var(--profile-backdrop-height), 300px);
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: var(--profile-preview-radius, 1.35rem);
+  box-shadow: none;
+}
+
+.backdrop[data-variant='preview'] .backdropContent {
+  min-height: min(var(--profile-backdrop-height), 300px);
+  padding: clamp(1.15rem, 2.5vw, 2rem);
+}
+
+@media (width < 64rem) {
+  .backdrop {
+    width: min(calc(100% - 2.5rem), var(--profile-shell-width));
+  }
+}
+
+@media (width < 48rem) {
+  .pageAtmosphere { opacity: 0.52; }
+
+  .pageAtmosphere > i:first-child {
+    right: -19rem !important;
+    width: 30rem !important;
+  }
+
+  .pageAtmosphere > i:nth-child(2) { display: none; }
+
+  .backdrop {
+    width: calc(100% - 1.25rem);
+    min-height: clamp(16.25rem, var(--profile-backdrop-height), 22.5rem);
+    border-radius: 1.25rem;
+  }
+
+  .backdropContent {
+    min-height: clamp(16.25rem, var(--profile-backdrop-height), 22.5rem);
+    padding: 1.25rem;
+  }
+
+  .backdropProtection {
+    background: var(--profile-hero-protection-mobile,
+      linear-gradient(135deg, var(--profile-text-support) 0 47%, var(--profile-image-scrim-soft) 79%, transparent 100%),
+      linear-gradient(0deg, rgb(5 7 10 / 45%), transparent 62%));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdropImage,
+  .backdropWash,
+  .backdropArtwork { transition: none; }
+  .pageAtmosphere > i { animation: none !important; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scope[data-profile-preset='apple-studio'] .pageAtmosphere > i:first-child {
+    animation: page-liquid-drift 20s ease-in-out infinite alternate;
+  }
+
+  .scope[data-profile-preset='apple-studio'] .pageAtmosphere > i:last-child {
+    animation: page-spectrum-drift 14s ease-in-out infinite alternate;
+  }
+
+  .scope[data-profile-preset='daybreak'] .pageAtmosphere > i:first-child {
+    animation: page-shutter-shift 22s cubic-bezier(0.22, 1, 0.36, 1) infinite alternate;
+  }
+
+  .scope[data-profile-preset='sea-glass'] .pageAtmosphere > i:first-child {
+    animation: page-mica-drift-a 18s ease-in-out infinite alternate;
+  }
+
+  .scope[data-profile-preset='sea-glass'] .pageAtmosphere > i:nth-child(2) {
+    animation: page-mica-drift-b 16s ease-in-out infinite alternate;
+  }
+
+  .scope[data-profile-preset='peach-haze'] .pageAtmosphere > i:nth-child(2) {
+    animation: page-print-register 19s steps(2, jump-none) infinite alternate;
+  }
+
+  .scope[data-profile-preset='lime-air'] .pageAtmosphere > i:nth-child(2) {
+    animation: page-route-scan 13s ease-in-out infinite;
+  }
+
+  .scope[data-profile-preset='lime-air'] .pageAtmosphere > i:last-child {
+    animation: page-marker-pulse 7s ease-in-out infinite;
+  }
+}
+
+@keyframes page-liquid-drift {
+  from { translate: 0 0; scale: 1; }
+  to { translate: -1rem 0.65rem; scale: 1.018; }
+}
+
+@keyframes page-spectrum-drift {
+  from { translate: -0.8rem 0; opacity: 0.24; }
+  to { translate: 0.8rem 0; opacity: 0.5; }
+}
+
+@keyframes page-shutter-shift {
+  from { translate: 0 0; }
+  to { translate: -1.25rem 0.75rem; }
+}
+
+@keyframes page-mica-drift-a {
+  from { translate: 0 0; }
+  to { translate: -0.8rem 0.55rem; }
+}
+
+@keyframes page-mica-drift-b {
+  from { translate: 0 0; }
+  to { translate: 0.65rem -0.45rem; }
+}
+
+@keyframes page-print-register {
+  from { translate: 0 0; }
+  to { translate: 0.18rem -0.12rem; }
+}
+
+@keyframes page-route-scan {
+  0%, 100% { translate: -0.8rem 0; opacity: 0.22; }
+  50% { translate: 0.8rem 0; opacity: 0.48; }
+}
+
+@keyframes page-marker-pulse {
+  0%, 100% { opacity: 0.28; scale: 0.92; }
+  50% { opacity: 0.62; scale: 1.08; }
+}
+
+:global([data-reduce-motion='true']) .pageAtmosphere > i { animation: none !important; }

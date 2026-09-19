@@ -1,0 +1,792 @@
+.root {
+  --glossary-rule: color-mix(in oklab, var(--border) 76%, transparent);
+  --glossary-accent: color-mix(in oklab, var(--detail-accent) 72%, var(--foreground));
+  --glossary-accent-soft: color-mix(in oklab, var(--detail-accent) 8%, var(--surface));
+  --glossary-accent-softer: color-mix(in oklab, var(--detail-accent) 3%, var(--surface));
+  --glossary-teal: color-mix(in oklab, #247a70 72%, var(--foreground));
+  --glossary-warm: color-mix(in oklab, #a8661b 72%, var(--foreground));
+
+  position: relative;
+  overflow: clip;
+  background: var(--surface);
+  border: 1px solid color-mix(in oklab, var(--detail-accent) 12%, var(--glossary-rule));
+  border-radius: 0.75rem;
+  box-shadow:
+    0 1px 2px color-mix(in oklab, var(--foreground) 5%, transparent),
+    0 24px 56px -48px color-mix(in oklab, var(--foreground) 34%, transparent);
+}
+
+.guideBar {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: center;
+  padding: clamp(1.65rem, 3vw, 2.2rem) clamp(1.25rem, 3vw, 2rem);
+  background:
+    linear-gradient(105deg, color-mix(in oklab, var(--detail-accent) 7%, var(--surface)), transparent 48%),
+    var(--surface);
+  border-bottom: 1px solid var(--glossary-rule);
+  grid-template-columns: minmax(0, 1fr) auto;
+  box-shadow: inset 3px 0 0 color-mix(in oklab, var(--detail-accent) 76%, var(--border));
+}
+
+.guideCopy {
+  max-width: 60rem;
+}
+
+.eyebrow,
+.focusHeader > div > span,
+.explanation > span,
+.promptBox > div > span,
+.contextExample > span {
+  color: var(--glossary-accent);
+  font-size: 0.68rem;
+  line-height: 1.4;
+  font-weight: 800;
+  letter-spacing: 0.035em;
+}
+
+.guideBar h2 {
+  margin-top: 0.4rem;
+  font-size: clamp(1.45rem, 2.3vw, 1.9rem);
+  line-height: 1.2;
+  font-weight: 760;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.guideBar > div:first-child > p:last-child {
+  max-width: 52rem;
+  margin-top: 0.55rem;
+  color: color-mix(in oklab, var(--foreground) 72%, var(--muted));
+  font-size: 0.86rem;
+  line-height: 1.72;
+}
+
+.guideActions {
+  display: flex;
+  gap: 0.7rem;
+  align-items: stretch;
+}
+
+.guideActions :global(.button),
+.promptBox :global(.button) {
+  min-height: 2.55rem;
+  border-radius: 0.45rem;
+  box-shadow: none;
+}
+
+.guideActions :global(.button) {
+  color: var(--background);
+  background: var(--foreground);
+  border: 0;
+  box-shadow: none;
+}
+
+.metrics {
+  display: flex;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+
+.metrics div {
+  min-width: 4rem;
+  padding: 0.35rem 0.8rem;
+}
+
+.metrics div + div {
+  border-left: 1px solid var(--glossary-rule);
+}
+
+.metrics dt {
+  color: var(--muted);
+  font-size: 0.58rem;
+}
+
+.metrics dd {
+  margin-top: 0.08rem;
+  color: var(--glossary-accent);
+  font-size: 1rem;
+  font-weight: 780;
+}
+
+.controlDeck {
+  position: sticky;
+  top: 4.35rem;
+  z-index: 6;
+  display: grid;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.9rem clamp(1rem, 2.5vw, 1.5rem);
+  background: color-mix(in oklab, var(--surface-secondary) 45%, var(--surface));
+  border-bottom: 1px solid var(--glossary-rule);
+  grid-template-columns: minmax(18rem, 0.82fr) minmax(0, 1.18fr);
+  backdrop-filter: blur(18px);
+}
+
+.searchGroup {
+  min-height: 2.75rem;
+  background: var(--surface);
+  border-color: transparent;
+  border-radius: 0.7rem;
+  box-shadow: none;
+}
+
+.root :global(.search-field[data-focus-within="true"]) .searchGroup {
+  border-color: transparent;
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--detail-accent) 40%, transparent);
+}
+
+.sectionNav {
+  display: flex;
+  gap: 0.35rem;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.sectionNav button {
+  appearance: none;
+  display: inline-flex;
+  min-width: max-content;
+  min-height: 2.55rem;
+  gap: 0.45rem;
+  align-items: center;
+  padding-inline: 0.82rem;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.55rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sectionNav button small {
+  min-width: 1.15rem;
+  color: inherit;
+  font-family: var(--font-mono, "Maple Mono CN", ui-monospace), monospace;
+  font-size: 0.58rem;
+  opacity: 0.65;
+}
+
+.sectionNav button:hover,
+.sectionNav button[aria-current="page"] {
+  color: var(--glossary-accent);
+  background: var(--glossary-accent-soft);
+  border-color: transparent;
+}
+
+.sectionNav button[aria-current="page"] {
+  box-shadow: inset 0 -1px 0 var(--detail-accent);
+}
+
+.readerLayout {
+  display: grid;
+  min-height: 42rem;
+  align-items: start;
+  grid-template-columns: minmax(16rem, 17.5rem) minmax(0, 1fr);
+}
+
+.indexPanel {
+  position: sticky;
+  top: 8rem;
+  display: flex;
+  height: min(49rem, calc(100vh - 8.75rem));
+  min-height: 36rem;
+  min-width: 0;
+  overflow: hidden;
+  background: color-mix(in oklab, #9a6a32 3.5%, var(--surface-secondary));
+  border-right: 1px solid var(--glossary-rule);
+  flex-direction: column;
+}
+
+.indexPanel > header {
+  display: flex;
+  min-height: 4.1rem;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 1rem;
+  background: transparent;
+  border-bottom: 1px solid var(--glossary-rule);
+}
+
+.indexPanel > header > div {
+  display: flex;
+  gap: 0.45rem;
+  align-items: baseline;
+}
+
+.indexPanel > header span {
+  font-size: 0.78rem;
+  font-weight: 780;
+}
+
+.indexPanel > header strong {
+  color: var(--muted);
+  font-family: var(--font-mono, "Maple Mono CN", ui-monospace), monospace;
+  font-size: 0.6rem;
+}
+
+.indexPanel > header button {
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+  padding: 0.4rem;
+  color: var(--glossary-accent);
+  background: transparent;
+  border: 0;
+  font-size: 0.64rem;
+  font-weight: 720;
+  cursor: pointer;
+}
+
+.indexPanel > header svg {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.termList {
+  min-height: 0;
+  padding: 0;
+  overflow: auto;
+  flex: 1;
+  scrollbar-width: thin;
+}
+
+.termGroup + .termGroup {
+  margin-top: 0.4rem;
+}
+
+.termGroup h3 {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding: 0.82rem 1rem 0.48rem;
+  color: color-mix(in oklab, var(--glossary-accent) 62%, var(--muted));
+  background: color-mix(in oklab, #9a6a32 2.5%, var(--surface-secondary));
+  font-size: 0.6rem;
+  line-height: 1.3;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.termButton {
+  appearance: none;
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  min-height: 4rem;
+  gap: 0.68rem;
+  align-items: center;
+  padding: 0.65rem 0.9rem;
+  color: var(--foreground);
+  background: transparent;
+  border: 0;
+  border-left: 3px solid transparent;
+  border-radius: 0;
+  grid-template-columns: 1.35rem minmax(0, 1fr) 0.9rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.termButton:hover {
+  background: color-mix(in oklab, var(--detail-accent) 4%, var(--surface));
+}
+
+.termButton[aria-selected="true"] {
+  color: var(--glossary-accent);
+  background: color-mix(in oklab, var(--detail-accent) 7%, var(--surface));
+  border-left-color: var(--detail-accent);
+  box-shadow: none;
+}
+
+.termButton > span:first-child {
+  color: color-mix(in oklab, var(--muted) 62%, transparent);
+  font-family: var(--font-mono, "Maple Mono CN", ui-monospace), monospace;
+  font-size: 0.55rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.termButton > span:nth-child(2) {
+  min-width: 0;
+}
+
+.termButton strong,
+.termButton code {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.termButton strong {
+  font-size: 0.82rem;
+  line-height: 1.35;
+  font-weight: 740;
+}
+
+.termButton code {
+  margin-top: 0.16rem;
+  color: var(--glossary-accent);
+  font-family: var(--font-mono, "Maple Mono CN", ui-monospace), monospace;
+  font-size: 0.6rem;
+}
+
+.termButton svg {
+  width: 0.75rem;
+  height: 0.75rem;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateX(-0.2rem);
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.termButton[aria-selected="true"] svg {
+  color: var(--glossary-accent);
+  opacity: 1;
+  transform: none;
+}
+
+.focusPanel {
+  position: sticky;
+  top: 8rem;
+  min-width: 0;
+  padding: clamp(1.4rem, 3vw, 2.25rem);
+  background: var(--surface);
+}
+
+.focusHeader > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.focusHeader > div > p {
+  color: var(--muted);
+  font-size: 0.66rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.focusHeader h3 {
+  margin-top: 0.55rem;
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  line-height: 1.08;
+  font-weight: 780;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.focusHeader > code {
+  display: inline-block;
+  margin-top: 0.48rem;
+  color: var(--glossary-accent);
+  font-family: var(--font-mono, "Maple Mono CN", ui-monospace), monospace;
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.focusProgress {
+  display: grid;
+  gap: 0.65rem;
+  align-items: center;
+  margin-top: 1rem;
+  grid-template-columns: minmax(0, 10rem) auto;
+}
+
+.focusProgress progress {
+  width: 100%;
+  height: 2px;
+  overflow: hidden;
+  appearance: none;
+  background: color-mix(in oklab, var(--border) 72%, transparent);
+  border: 0;
+  border-radius: 999px;
+}
+
+.focusProgress progress::-webkit-progress-bar {
+  background: color-mix(in oklab, var(--border) 72%, transparent);
+}
+
+.focusProgress progress::-webkit-progress-value {
+  background: var(--detail-accent);
+}
+
+.focusProgress progress::-moz-progress-bar {
+  background: var(--detail-accent);
+}
+
+.focusProgress span {
+  color: var(--muted);
+  font-family: var(--font-mono, "Maple Mono CN", ui-monospace), monospace;
+  font-size: 0.55rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.focusBody {
+  display: grid;
+  gap: 1rem;
+  align-items: start;
+  margin-top: 1.35rem;
+  grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr);
+}
+
+.visualColumn {
+  min-width: 0;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--glossary-rule);
+  border-radius: 0.55rem;
+}
+
+.previewToolbar {
+  display: flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 0.95rem;
+  background: color-mix(in oklab, var(--surface-secondary) 68%, transparent);
+  border-bottom: 1px solid var(--glossary-rule);
+}
+
+.previewToolbar span {
+  display: inline-flex;
+  gap: 0.48rem;
+  align-items: center;
+  color: var(--foreground);
+  font-size: 0.72rem;
+  font-weight: 760;
+}
+
+.previewToolbar i {
+  width: 0.48rem;
+  height: 0.48rem;
+  background: var(--glossary-teal);
+  border-radius: 999px;
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--glossary-teal) 12%, transparent);
+}
+
+.previewToolbar small {
+  color: var(--muted);
+  font-size: 0.6rem;
+  font-weight: 650;
+}
+
+.focusDetails {
+  display: grid;
+  min-width: 0;
+  gap: 0.85rem;
+}
+
+.focusVisual {
+  position: relative;
+  display: grid;
+  min-height: clamp(19rem, 28vw, 25rem);
+  overflow: hidden;
+  background: color-mix(in oklab, var(--surface-secondary) 72%, var(--surface));
+  place-items: center;
+}
+
+.focusPreview {
+  width: 100%;
+  height: clamp(19rem, 28vw, 25rem);
+  min-height: clamp(19rem, 28vw, 25rem);
+  border: 0;
+  border-radius: 0;
+}
+
+.focusVisual > span {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.72rem;
+  max-width: calc(100% - 1.3rem);
+  padding: 0.36rem 0.58rem;
+  overflow: hidden;
+  color: color-mix(in oklab, var(--foreground) 72%, var(--muted));
+  background: color-mix(in oklab, var(--surface) 92%, transparent);
+  border: 1px solid var(--glossary-rule);
+  border-radius: 0.38rem;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  backdrop-filter: blur(6px);
+}
+
+.contextExample {
+  display: grid;
+  gap: 0.62rem;
+  padding: 0.95rem 1rem;
+  background: color-mix(in oklab, var(--detail-accent) 6%, var(--surface));
+  border: 0;
+  border-left: 2px solid color-mix(in oklab, var(--detail-accent) 70%, var(--border));
+  border-radius: 0.42rem;
+}
+
+.contextExample > span {
+  color: var(--glossary-warm);
+}
+
+.contextExample blockquote {
+  color: color-mix(in oklab, var(--foreground) 91%, var(--glossary-warm));
+  font-size: 0.94rem;
+  line-height: 1.62;
+  font-weight: 680;
+}
+
+.contextExample p {
+  padding-top: 0.65rem;
+  color: color-mix(in oklab, var(--foreground) 68%, var(--muted));
+  border-top: 1px dashed color-mix(in oklab, var(--detail-accent) 24%, var(--glossary-rule));
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.contextExample p strong {
+  color: var(--glossary-teal);
+}
+
+.explanation {
+  padding: 0.95rem 1rem;
+  background: color-mix(in oklab, var(--surface-secondary) 62%, var(--surface));
+  border: 0;
+  border-radius: 0.42rem;
+}
+
+.explanation p {
+  max-width: 48rem;
+  margin-top: 0.4rem;
+  color: color-mix(in oklab, var(--foreground) 86%, var(--muted));
+  font-size: 0.9rem;
+  line-height: 1.72;
+  text-wrap: pretty;
+}
+
+.promptBox {
+  display: grid;
+  gap: 0.9rem;
+  align-items: stretch;
+  padding: 0.95rem 1rem;
+  color: var(--foreground);
+  background: color-mix(in oklab, var(--glossary-teal) 5%, var(--surface));
+  border: 0;
+  border-left: 2px solid var(--glossary-teal);
+  border-radius: 0.42rem;
+  grid-template-columns: 1fr;
+}
+
+.promptBox > div > span {
+  color: var(--glossary-teal);
+}
+
+.promptBox p {
+  max-width: 52rem;
+  margin-top: 0.45rem;
+  font-size: 0.9rem;
+  line-height: 1.72;
+  font-weight: 610;
+  user-select: text;
+  white-space: pre-wrap;
+}
+
+.promptBox :global(.button) {
+  width: fit-content;
+  color: var(--background);
+  background: var(--foreground);
+  border: 0;
+  box-shadow: none;
+}
+
+.focusFooter {
+  display: grid;
+  gap: 1rem;
+  align-items: center;
+  padding-top: 1rem;
+  margin-top: 1.15rem;
+  border-top: 1px solid var(--glossary-rule);
+  grid-template-columns: auto minmax(0, 1fr) auto;
+}
+
+.focusFooter > span {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.65rem;
+  line-height: 1.45;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.empty {
+  display: grid;
+  min-height: 26rem;
+  padding: 3rem 1.25rem;
+  place-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+.empty > span {
+  color: color-mix(in oklab, var(--detail-accent) 30%, var(--muted));
+  font-family: var(--font-mono, "Maple Mono CN", ui-monospace), monospace;
+  font-size: 4rem;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.empty h3 {
+  margin-top: 0.8rem;
+  font-size: 1.2rem;
+  font-weight: 760;
+}
+
+.empty p {
+  margin: 0.4rem 0 1rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.sectionNav button:focus-visible,
+.indexPanel button:focus-visible,
+.termButton:focus-visible {
+  outline: 2px solid var(--detail-accent);
+  outline-offset: 2px;
+}
+
+@media (width < 72rem) {
+  .focusBody {
+    grid-template-columns: 1fr;
+  }
+
+  .focusDetails {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .promptBox {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (width < 64rem) {
+  .controlDeck {
+    position: relative;
+    top: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .readerLayout {
+    grid-template-columns: minmax(15rem, 17rem) minmax(0, 1fr);
+  }
+}
+
+@media (width < 52rem) {
+  .guideBar {
+    align-items: start;
+    grid-template-columns: 1fr;
+  }
+
+  .guideActions {
+    justify-content: space-between;
+  }
+
+  .readerLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .indexPanel {
+    position: static;
+    height: auto;
+    min-height: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--glossary-rule);
+  }
+
+  .termList {
+    display: flex;
+    gap: 0.4rem;
+    padding: 0.55rem;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  .termList::-webkit-scrollbar,
+  .sectionNav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sectionNav {
+    scrollbar-width: none;
+  }
+
+  .termGroup {
+    display: contents;
+  }
+
+  .termGroup h3 {
+    display: none;
+  }
+
+  .termButton {
+    width: 11rem;
+    min-width: 11rem;
+    min-height: 3.45rem;
+    flex: none;
+    scroll-snap-align: start;
+  }
+
+  .termButton[aria-selected="true"] {
+    border-left-color: var(--detail-accent);
+  }
+
+  .focusPanel {
+    position: static;
+  }
+
+  .focusDetails {
+    grid-template-columns: 1fr;
+  }
+
+  .promptBox {
+    grid-column: auto;
+  }
+}
+
+@media (width < 40rem) {
+  .guideActions {
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+  .metrics {
+    width: fit-content;
+  }
+
+  .promptBox {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+  }
+
+  .promptBox :global(.button) {
+    width: 100%;
+  }
+
+  .focusFooter {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .focusFooter > span {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .termButton,
+  .termButton svg {
+    transition: none;
+  }
+}

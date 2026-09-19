@@ -1,0 +1,119 @@
+.draftStatus {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.draftStatus::before {
+  width: 0.42rem;
+  height: 0.42rem;
+  flex: none;
+  content: '';
+  background: color-mix(in oklab, var(--success) 70%, var(--foreground));
+  border-radius: 999px;
+}
+
+.draftFailed::before,
+.fileFailed::before {
+  background: var(--danger);
+}
+
+.restoreNotice,
+.failurePanel {
+  padding: 0.75rem 0.8rem;
+  font-size: 0.74rem;
+  line-height: 1.55;
+  color: color-mix(in oklab, var(--warning) 70%, var(--foreground));
+  background: color-mix(in oklab, var(--warning) 8%, var(--surface));
+  border-radius: 0.7rem;
+}
+
+.restoreNotice {
+  margin-bottom: 1rem;
+}
+
+.failurePanel strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--foreground);
+}
+
+.failurePanel ul {
+  display: grid;
+  gap: 0.2rem;
+  padding-left: 1rem;
+}
+
+.fieldInvalid :is(input, select, textarea) {
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--danger) 42%, transparent);
+}
+
+.fieldError {
+  font-size: 0.72rem;
+  line-height: 1.4;
+  color: var(--danger);
+}
+
+.promptInvalid {
+  padding: 0.3rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--danger) 42%, transparent);
+}
+
+.fileStatus {
+  display: inline-flex;
+  gap: 0.32rem;
+  align-items: center;
+  color: var(--muted);
+}
+
+.fileStatus::before {
+  width: 0.36rem;
+  height: 0.36rem;
+  flex: none;
+  content: '';
+  background: color-mix(in oklab, var(--muted) 62%, transparent);
+  border-radius: 999px;
+}
+
+.fileUploaded::before {
+  background: var(--success);
+}
+
+.fileUploading::before {
+  background: var(--catalog-accent);
+  animation: prompt-upload-pulse 900ms ease-in-out infinite alternate;
+}
+
+.fileFailed {
+  color: var(--danger);
+}
+
+.removePending {
+  cursor: wait;
+  opacity: 0.5;
+}
+
+.progressHeader {
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progressHeader b {
+  font-family: var(--font-mono, ui-monospace), monospace;
+  font-size: 0.68rem;
+  color: var(--foreground);
+}
+
+@keyframes prompt-upload-pulse {
+  to { opacity: 0.35; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fileUploading::before { animation: none; }
+}

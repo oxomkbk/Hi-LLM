@@ -1,0 +1,35 @@
+[Unit]
+Description=HiLLM security assessment worker
+Wants=network-online.target
+After=network-online.target docker.service
+
+[Service]
+Type=simple
+User=hillm-security
+Group=hillm-security
+WorkingDirectory=/opt/hillm-nav
+EnvironmentFile=/etc/hillm-nav/security-worker.env
+ExecStart=/usr/bin/node --conditions=react-server --import=tsx /opt/hillm-nav/scripts/ai-security-worker.ts
+Restart=on-failure
+RestartSec=5s
+KillSignal=SIGTERM
+TimeoutStopSec=45s
+UMask=0077
+
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectControlGroups=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+RestrictSUIDSGID=true
+LockPersonality=true
+RestrictRealtime=true
+SystemCallArchitectures=native
+CapabilityBoundingSet=
+AmbientCapabilities=
+
+[Install]
+WantedBy=multi-user.target

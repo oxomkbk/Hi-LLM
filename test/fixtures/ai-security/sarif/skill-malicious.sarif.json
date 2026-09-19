@@ -1,0 +1,31 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/Schemata/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "properties": { "securityScore": 5 },
+      "results": [
+        {
+          "fixes": [{ "description": { "text": "Remove the remote execution path." } }],
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": { "uri": "SKILL.md" },
+                "region": { "endLine": 8, "startLine": 6 }
+              }
+            }
+          ],
+          "message": { "text": "Remote payload retrieval" },
+          "partialFingerprints": { "primaryLocationLineHash": "a9d408e1db08b367" },
+          "properties": {
+            "description": "Downloads a remote payload and requests local execution.",
+            "severity": "Critical"
+          },
+          "ruleId": "T03"
+        }
+      ],
+      "tool": { "driver": { "name": "aig-skill-scan", "version": "0.2.1" } }
+    }
+  ],
+  "version": "2.1.0"
+}

@@ -1,0 +1,1072 @@
+.root:global(.markdown-editor) {
+  --content-editor-border: color-mix(in oklab, var(--border) 78%, transparent);
+  --content-editor-subtle: color-mix(in oklab, var(--surface-secondary) 74%, var(--surface));
+
+  min-width: 0;
+  overflow: visible;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.root[data-focus-mode] {
+  position: fixed;
+  z-index: 1200;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.root[data-focus-mode] .content,
+.root[data-focus-mode] .source {
+  width: min(52rem, calc(100% - 3rem));
+  margin-inline: auto;
+}
+
+.root[data-focus-mode] .content {
+  flex: 1;
+}
+
+.root:focus-within {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.root[data-read-only] {
+  box-shadow: none;
+}
+
+.header {
+  display: flex;
+  min-height: 3.25rem;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.75rem 0.65rem 1rem;
+}
+
+.identity {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.identity > div {
+  display: grid;
+  min-width: 0;
+  gap: 0.12rem;
+}
+
+.identity strong {
+  overflow: hidden;
+  font-size: 0.82rem;
+  line-height: 1.25;
+  font-weight: 720;
+  letter-spacing: -0.01em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.identity span:not(.statusDot) {
+  font-size: 0.67rem;
+  line-height: 1.2;
+  color: var(--muted);
+}
+
+.statusDot {
+  width: 0.48rem;
+  height: 0.48rem;
+  flex: none;
+  background: color-mix(in oklab, var(--accent) 78%, #16a36a);
+  border-radius: 999px;
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 10%, transparent);
+}
+
+.modeSwitch {
+  display: flex;
+  flex: none;
+  gap: 0.12rem;
+  padding: 0.18rem;
+  background: var(--content-editor-subtle);
+  border-radius: 0.65rem;
+}
+
+.modeSwitch button {
+  min-height: 2rem;
+  padding-inline: 0.72rem;
+  font-size: 0.68rem;
+  line-height: 1;
+  font-weight: 680;
+  color: var(--muted);
+  border-radius: 0.48rem;
+  transition: color 140ms ease, background 140ms ease, box-shadow 140ms ease;
+}
+
+.modeSwitch button[aria-pressed="true"] {
+  color: var(--foreground);
+  background: var(--surface);
+  box-shadow: 0 1px 4px color-mix(in oklab, black 9%, transparent);
+}
+
+.modeSwitch button:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.compatibilityNotice {
+  display: flex;
+  gap: 0.55rem;
+  align-items: baseline;
+  padding: 0.58rem 1rem;
+  font-size: 0.68rem;
+  line-height: 1.5;
+  color: color-mix(in oklab, #92400e 76%, var(--foreground));
+  background: color-mix(in oklab, #f59e0b 8%, var(--surface-secondary));
+  border-top: 1px solid color-mix(in oklab, #f59e0b 20%, var(--content-editor-border));
+}
+
+.compatibilityNotice strong {
+  flex: none;
+  font-weight: 760;
+}
+
+.compatibilityNotice span {
+  color: color-mix(in oklab, var(--foreground) 65%, var(--muted));
+}
+
+.root[data-source-protected] .statusDot {
+  background: #d97706;
+  box-shadow: 0 0 0 4px color-mix(in oklab, #f59e0b 12%, transparent);
+}
+
+.modeSwitch button:focus-visible,
+.toolButton:focus-visible,
+.headingSelect select:focus-visible,
+.linkPanel :is(input, button):focus-visible,
+.source:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--accent) 64%, transparent);
+  outline-offset: 2px;
+}
+
+.toolbar {
+  position: relative;
+  display: flex;
+  min-height: 3rem;
+  gap: 0.2rem;
+  row-gap: 0.35rem;
+  align-items: center;
+  padding: 0.45rem 0.7rem;
+  overflow: visible;
+  flex-wrap: wrap;
+  background: color-mix(in oklab, var(--content-editor-subtle) 62%, transparent);
+  border-block: 1px solid var(--content-editor-border);
+}
+
+/* Let commands form intentional rows on the studio canvas so every control
+   remains reachable without forcing a horizontal scroll. */
+.toolbarBreak {
+  flex-basis: 100%;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.root:not([data-focus-mode]) .toolbar {
+  position: sticky;
+  z-index: 4;
+  top: var(--authoring-sticky-offset, 4rem);
+}
+
+.root[data-focus-mode] .toolbar {
+  position: sticky;
+  z-index: 4;
+  top: 0;
+}
+
+.sourceToolbar {
+  overflow: visible;
+  flex-wrap: wrap;
+  scrollbar-width: thin;
+}
+
+.toolButton {
+  display: grid;
+  width: 2.1rem;
+  height: 2.1rem;
+  flex: none;
+  place-items: center;
+  color: var(--muted);
+  border-radius: 0.52rem;
+  transition: color 130ms ease, background 130ms ease, transform 130ms ease;
+}
+
+.toolButton:hover:not(:disabled) {
+  color: var(--foreground);
+  background: color-mix(in oklab, var(--surface) 86%, transparent);
+}
+
+.toolButton:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.toolButton[aria-pressed="true"] {
+  color: color-mix(in oklab, var(--accent) 84%, var(--foreground));
+  background: color-mix(in oklab, var(--accent) 12%, var(--surface));
+}
+
+.toolButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.34;
+}
+
+.headingSelect {
+  flex: none;
+}
+
+.headingSelect select {
+  min-width: 5rem;
+  height: 2.1rem;
+  padding: 0 1.6rem 0 0.65rem;
+  font-size: 0.7rem;
+  font-weight: 680;
+  color: var(--foreground);
+  background: var(--surface);
+  border: 0;
+  border-radius: 0.52rem;
+  box-shadow: 0 1px 3px color-mix(in oklab, black 6%, transparent);
+}
+
+.separator {
+  width: 1px;
+  height: 1.3rem;
+  flex: none;
+  margin-inline: 0.25rem;
+  background: var(--content-editor-border);
+}
+
+.toolbarSpacer {
+  flex: 1;
+}
+
+.menuTrigger {
+  min-width: 3.6rem;
+  height: 2.1rem;
+  flex: none;
+  padding-inline: 0.65rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--foreground);
+  border-radius: 0.52rem;
+}
+
+.menuPopover {
+  width: min(20rem, calc(100vw - 1.5rem));
+  padding: 0.75rem;
+  color: var(--foreground);
+  background: color-mix(in oklab, var(--surface) 96%, transparent);
+  border: 1px solid var(--content-editor-border);
+  border-radius: 0.8rem;
+  box-shadow: 0 18px 48px color-mix(in oklab, black 18%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+.commandGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.35rem;
+  margin-top: 0.6rem;
+}
+
+.commandButton {
+  display: flex;
+  min-height: 2.75rem;
+  gap: 0.55rem;
+  align-items: center;
+  padding: 0.55rem 0.65rem;
+  font-size: 0.7rem;
+  font-weight: 680;
+  color: var(--foreground);
+  text-align: left;
+  background: var(--surface-secondary);
+  border-radius: 0.55rem;
+  transition: background 140ms ease, transform 140ms ease;
+}
+
+.commandButton:hover {
+  background: color-mix(in oklab, var(--accent) 8%, var(--surface-secondary));
+}
+
+.commandButton:active {
+  transform: translateY(1px);
+}
+
+.commandButton[aria-pressed="true"] {
+  color: color-mix(in oklab, var(--accent) 86%, var(--foreground));
+  background: color-mix(in oklab, var(--accent) 11%, var(--surface));
+}
+
+.formatToolGrid {
+  display: flex;
+  gap: 0.2rem;
+  flex-wrap: wrap;
+  margin-top: 0.6rem;
+}
+
+.formatToolGrid .toolButton {
+  width: 2.35rem;
+  height: 2.35rem;
+}
+
+.formatField,
+.colorField {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.7rem;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 680;
+}
+
+.formatField select {
+  min-height: 2.1rem;
+  padding: 0 0.55rem;
+  color: var(--foreground);
+  background: var(--surface-secondary);
+  border: 1px solid var(--content-editor-border);
+  border-radius: 0.45rem;
+}
+
+.colorField {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+}
+
+.colorField legend { padding: 0; }
+
+.colorSwatches {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.defaultSwatch,
+.colorSwatch {
+  display: grid;
+  width: 1.8rem;
+  height: 1.8rem;
+  place-items: center;
+  color: var(--foreground);
+  background: var(--surface-secondary);
+  border: 1px solid var(--content-editor-border);
+  border-radius: 0.4rem;
+}
+
+.defaultSwatch[aria-pressed="true"],
+.colorSwatch[aria-pressed="true"] { outline: 2px solid color-mix(in oklab, var(--accent) 58%, transparent); outline-offset: 1px; }
+
+.colorSwatch span {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+}
+
+.clearFormat {
+  width: 100%;
+  min-height: 2.1rem;
+  margin-top: 0.7rem;
+  color: var(--muted);
+  text-align: left;
+  border-radius: 0.45rem;
+}
+
+.clearFormat:hover { color: var(--foreground); background: var(--surface-secondary); }
+
+.content {
+  min-height: var(--content-editor-min-height);
+  cursor: text;
+}
+
+.canvas {
+  min-width: 0;
+  min-height: 0;
+  background: var(--surface);
+}
+
+.canvasToolbar {
+  display: contents;
+}
+
+.workbenchBody {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  min-width: 0;
+}
+
+.workbenchBody > :global(.authoring-editor-workbench-canvas) {
+  min-width: 0;
+  background: var(--surface);
+}
+
+.workbenchBody :global(.authoring-editor-document) {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  background: var(--surface);
+}
+
+.workbenchBody :global(.authoring-editor-document-header) {
+  width: min(100%, 72rem);
+  padding: 2.25rem clamp(2rem, 7vw, 8rem) 0;
+  margin-inline: auto;
+}
+
+.workbenchBody :global(.authoring-editor-document-header):empty {
+  display: none;
+}
+
+.workbenchBody > :global(.authoring-editor-outline) {
+  align-self: stretch;
+}
+
+.content :global(.tiptap) {
+  width: min(100%, 68rem);
+  min-height: var(--content-editor-min-height);
+  padding: clamp(1.35rem, 3.2vw, 2.25rem) clamp(1.1rem, 4vw, 2.6rem);
+  margin-inline: auto;
+  overflow-wrap: anywhere;
+  font-size: 0.98rem;
+  line-height: 1.88;
+  outline: none;
+}
+
+.content :global(.tiptap > * + *) {
+  margin-top: 0.85rem;
+}
+
+.content :global(.tiptap h1) {
+  scroll-margin-top: calc(var(--authoring-sticky-offset, 4rem) + 4.25rem);
+  margin-top: 0.2rem;
+  font-size: clamp(1.8rem, 3vw, 2.45rem);
+  line-height: 1.16;
+  font-weight: 780;
+  letter-spacing: -0.04em;
+}
+
+.content :global(.tiptap h2) {
+  scroll-margin-top: calc(var(--authoring-sticky-offset, 4rem) + 4.25rem);
+  margin-top: 1.45em;
+  font-size: 1.42rem;
+  line-height: 1.3;
+  font-weight: 760;
+  letter-spacing: -0.025em;
+}
+
+.content :global(.tiptap h3) {
+  scroll-margin-top: calc(var(--authoring-sticky-offset, 4rem) + 4.25rem);
+  margin-top: 1.3em;
+  font-size: 1.16rem;
+  line-height: 1.4;
+  font-weight: 730;
+  letter-spacing: -0.016em;
+}
+
+.content :global(.tiptap h4) {
+  scroll-margin-top: calc(var(--authoring-sticky-offset, 4rem) + 4.25rem);
+  margin-top: 1.2em;
+  font-size: 1rem;
+  line-height: 1.45;
+  font-weight: 720;
+}
+
+.content :global(.tiptap ul),
+.content :global(.tiptap ol) {
+  padding-left: 1.5rem;
+}
+
+.content :global(.tiptap ul) {
+  list-style: disc;
+}
+
+.content :global(.tiptap ol) {
+  list-style: decimal;
+}
+
+.content :global(.tiptap li + li) {
+  margin-top: 0.28rem;
+}
+
+.content :global(.tiptap ul[data-type='taskList']) {
+  padding-left: 0;
+  list-style: none;
+}
+
+.content :global(.tiptap ul[data-type='taskList'] li) {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+}
+
+.content :global(.tiptap ul[data-type='taskList'] li > label) {
+  display: grid;
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: none;
+  place-items: center;
+  margin-top: 0.35rem;
+}
+
+.content :global(.tiptap ul[data-type='taskList'] input) {
+  width: 0.92rem;
+  height: 0.92rem;
+  accent-color: var(--accent);
+}
+
+.content :global(.tiptap ul[data-type='taskList'] li > div) {
+  min-width: 0;
+  flex: 1;
+}
+
+.content :global(.tiptap .tableWrapper) {
+  max-width: 100%;
+  overflow-x: auto;
+  border-radius: 0.7rem;
+}
+
+.content :global(.tiptap table) {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 0.82rem;
+}
+
+.content :global(.tiptap th),
+.content :global(.tiptap td) {
+  min-width: 7rem;
+  padding: 0.62rem 0.72rem;
+  vertical-align: top;
+  border: 1px solid var(--content-editor-border);
+}
+
+.content :global(.tiptap th) {
+  font-weight: 720;
+  text-align: left;
+  background: var(--surface-secondary);
+}
+
+.content :global(.tiptap td p),
+.content :global(.tiptap th p) {
+  margin: 0;
+}
+
+.content :global(.tiptap .selectedCell)::after {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  content: '';
+  background: color-mix(in oklab, var(--accent) 9%, transparent);
+}
+
+.content :global(.tiptap td),
+.content :global(.tiptap th) {
+  position: relative;
+}
+
+.content :global(.tiptap img.markdown-editor-image) {
+  display: block;
+  max-width: min(100%, 52rem);
+  height: auto;
+  margin-inline: auto;
+  border-radius: 0.75rem;
+}
+
+.content :global(.tiptap blockquote) {
+  padding: 0.65rem 0.9rem;
+  color: color-mix(in oklab, var(--foreground) 70%, var(--muted));
+  background: color-mix(in oklab, var(--accent) 5%, var(--surface-secondary));
+  border-left: 3px solid color-mix(in oklab, var(--accent) 52%, var(--border));
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.content :global(.tiptap code) {
+  padding: 0.12em 0.34em;
+  font-family: var(--font-mono, ui-monospace), monospace;
+  font-size: 0.84em;
+  background: var(--surface-secondary);
+  border-radius: 0.3rem;
+}
+
+.content :global(.tiptap pre) {
+  overflow-x: auto;
+  padding: 1rem;
+  color: #e9eef5;
+  background: #111820;
+  border-radius: 0.72rem;
+}
+
+.content :global(.tiptap pre code) {
+  padding: 0;
+  color: inherit;
+  background: transparent;
+}
+
+.content :global(.tiptap a) {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.content :global(.tiptap hr) {
+  margin-block: 1.5rem;
+  border: 0;
+  border-top: 1px solid var(--content-editor-border);
+}
+
+.content :global(.tiptap:has(> p:first-child:last-child > br.ProseMirror-trailingBreak))::before {
+  float: left;
+  height: 0;
+  color: color-mix(in oklab, var(--muted) 64%, transparent);
+  pointer-events: none;
+  content: attr(data-placeholder);
+}
+
+.root .source {
+  display: block;
+  width: min(100%, 68rem);
+  min-height: var(--content-editor-min-height);
+  padding: clamp(1.35rem, 3.2vw, 2.25rem) clamp(1.1rem, 4vw, 2.6rem);
+  margin-inline: auto;
+  font-family: var(--font-mono, ui-monospace), monospace;
+  font-size: 0.79rem;
+  line-height: 1.8;
+  resize: vertical;
+  background: transparent;
+  border: 0;
+  outline: none;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 2.5rem;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.66rem;
+  line-height: 1.35;
+  color: var(--muted);
+  background: color-mix(in oklab, var(--content-editor-subtle) 62%, transparent);
+  border-top: 1px solid var(--content-editor-border);
+}
+
+.documentStats {
+  display: flex;
+  flex: none;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.hiddenInput {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.studioRoot:global(.markdown-editor),
+.studioRoot[data-focus-mode] {
+  position: relative;
+  inset: auto;
+  z-index: auto;
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  overflow: visible;
+  background: #fff;
+}
+
+.studioCanvas {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  overflow: visible;
+}
+
+.studioCanvas > .canvas {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  position: relative;
+  min-height: 0;
+  height: auto;
+  overflow: visible;
+  overscroll-behavior: auto;
+}
+
+.studioCanvas .canvasToolbar {
+  position: sticky;
+  flex: none;
+  z-index: 8;
+  top: 0;
+  display: block;
+  width: 100%;
+  max-width: none;
+  padding: 0;
+  color: #55565d;
+  background: #fff;
+  border-bottom: 1px solid #ececef;
+  box-shadow: none;
+}
+
+.studioCanvas .toolbar {
+  position: static;
+  width: 100%;
+  min-height: 52px;
+  padding: 8px 190px 8px 24px;
+  margin-inline: auto;
+  overflow: visible;
+  flex-wrap: wrap;
+  align-content: center;
+  color: #55565d;
+  background: #fff;
+  border: 0;
+  scrollbar-width: none;
+}
+
+.studioRoot[data-source-only] .toolbar { padding-right: 24px; }
+
+.studioCanvas .toolbarBreak {
+  display: block;
+  flex-basis: 100%;
+  width: 0;
+  height: 0;
+}
+
+.studioRoot:not([data-focus-mode]) .studioCanvas .toolbar {
+  position: static;
+  top: auto;
+}
+
+.studioCanvas .toolbar::-webkit-scrollbar { display: none; }
+
+.studioCanvas .toolButton {
+  width: 30px;
+  height: 30px;
+  color: #777880;
+  border-radius: 4px;
+}
+
+.studioCanvas .toolButton:hover:not(:disabled) { color: #18181a; background: #f1f1f3; }
+.studioCanvas .toolButton[aria-pressed="true"] { color: #18181a; background: #e8e8eb; }
+
+.studioCanvas .headingSelect select {
+  height: 30px;
+  min-width: 70px;
+  color: #252529;
+  background: #f4f4f5;
+  border: 1px solid #e1e2e6;
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+.studioCanvas .separator { background: #e1e2e6; }
+.studioCanvas .toolbarSpacer { display: none; }
+.studioCanvas .inlineToolGroup {
+  display: inline-flex;
+  gap: 2px;
+  align-items: center;
+  flex: none;
+}
+
+.studioCanvas .inlineField,
+.studioCanvas .inlineColorField {
+  display: inline-flex;
+  min-height: 30px;
+  height: auto;
+  gap: 5px;
+  align-items: center;
+  flex: none;
+  white-space: nowrap;
+  color: #85868e;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.studioCanvas .inlineField select {
+  width: 66px;
+  height: 30px;
+  padding: 0 18px 0 7px;
+  color: #252529;
+  background: #f4f4f5;
+  border: 1px solid #e1e2e6;
+  border-radius: 4px;
+}
+
+.studioCanvas .inlineColorField {
+  padding: 0;
+  border: 0;
+}
+
+.studioCanvas .inlineColorField legend {
+  display: block;
+  width: auto;
+  padding: 0;
+}
+
+.studioCanvas .inlineColorField .colorSwatches {
+  min-height: 30px;
+  padding: 3px;
+}
+
+.studioCanvas .clearFormat {
+  width: auto;
+  min-height: 30px;
+  margin: 0;
+  padding-inline: 8px;
+  color: #85868e;
+  background: #f4f4f5;
+  border: 1px solid #e1e2e6;
+  border-radius: 4px;
+}
+
+.studioCanvas .clearFormat:hover { color: #252529; background: #ececef; }
+.studioCanvas .menuTrigger {
+  height: 30px;
+  color: #252529;
+  background: #f4f4f5;
+  border: 1px solid #e1e2e6;
+  box-shadow: none;
+}
+
+.studioCanvas .menuTrigger:hover { color: #18181a; background: #ececef; }
+
+.studioCanvas .modeSwitch {
+  position: absolute;
+  top: 11px;
+  right: 24px;
+  gap: 2px;
+  padding: 3px;
+  background: #f4f4f5;
+  border-radius: 6px;
+}
+
+.studioCanvas .modeSwitch button {
+  min-height: 30px;
+  padding-inline: 9px;
+  color: #777880;
+  background: transparent;
+  border-radius: 4px;
+}
+
+.studioCanvas .modeSwitch button[aria-pressed="true"] { color: #18181a; background: #fff; box-shadow: 0 1px 3px rgb(24 24 26 / 8%); }
+
+.studioCanvas :global(.authoring-editor-document) {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  width: min(100%, 784px);
+  min-height: 0;
+  height: auto;
+  padding: 0 32px 96px;
+  margin-inline: auto;
+  overflow: visible;
+  background: #fff;
+}
+
+.studioCanvas :global(.authoring-editor-document-header) {
+  width: 100%;
+  padding: 30px 0 20px;
+  margin: 0;
+  border: 0;
+}
+
+.studioRoot .studioCanvas .canvas .content :global(.tiptap),
+.studioRoot .studioCanvas .canvas .source {
+  width: 100%;
+  min-height: 34rem;
+  padding: 28px 0;
+  margin: 0;
+  color: #2c2e33;
+  font-size: 16px;
+  line-height: 1.85;
+  background: transparent;
+}
+
+.studioCanvas .footer {
+  flex: none;
+  min-height: 32px;
+  padding: 6px 14px;
+  color: #85868e;
+  background: #fff;
+  border-top: 1px solid #ececef;
+}
+
+.studioCanvas .compatibilityNotice {
+  position: sticky;
+  z-index: 7;
+  top: 66px;
+  width: min(100% - 32px, 720px);
+  margin: 8px auto 0;
+  border: 1px solid #ead8bd;
+  border-radius: 6px;
+}
+
+.warning,
+.counterWarning {
+  color: color-mix(in oklab, #b45309 76%, var(--foreground));
+}
+
+.linkPanel {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% - 0.2rem);
+  left: 8.3rem;
+  width: min(25rem, calc(100% - 1.4rem));
+  padding: 0.75rem;
+  background: color-mix(in oklab, var(--surface) 97%, transparent);
+  border: 1px solid var(--content-editor-border);
+  border-radius: 0.75rem;
+  box-shadow: 0 18px 48px color-mix(in oklab, black 16%, transparent);
+  backdrop-filter: blur(20px);
+}
+
+.linkLabel {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-size: 0.66rem;
+  font-weight: 720;
+  color: var(--muted);
+}
+
+.linkPanel > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 0.38rem;
+}
+
+.linkPanel input {
+  min-width: 0;
+  height: 2.2rem;
+  padding-inline: 0.7rem;
+  font-size: 0.74rem;
+  background: var(--surface-secondary);
+  border: 1px solid var(--content-editor-border);
+  border-radius: 0.5rem;
+  outline: none;
+}
+
+.linkPanel button {
+  min-height: 2.2rem;
+  padding-inline: 0.72rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--muted);
+  border-radius: 0.5rem;
+}
+
+.linkPanel button:first-of-type {
+  color: var(--accent-foreground, white);
+  background: var(--accent);
+}
+
+.linkError {
+  margin-top: 0.4rem;
+  font-size: 0.64rem;
+  color: color-mix(in oklab, #dc2626 78%, var(--foreground));
+}
+
+@media (max-width: 720px) {
+  .header {
+    align-items: flex-start;
+  }
+
+  .toolbar {
+    overflow: visible;
+    flex-wrap: wrap;
+    scrollbar-width: thin;
+  }
+
+  .toolbarSpacer {
+    min-width: 0.3rem;
+  }
+
+  .linkPanel {
+    position: fixed;
+    inset: auto 0.75rem 0.75rem;
+    width: auto;
+  }
+
+  .footer {
+    align-items: flex-start;
+  }
+
+  .root[data-focus-mode] .content,
+  .root[data-focus-mode] .source {
+    width: 100%;
+  }
+
+  .workbenchBody {
+    display: block;
+  }
+
+  .workbenchBody > :global(.authoring-editor-outline) {
+    display: block;
+    width: auto;
+    padding: 0.65rem 0.85rem;
+    overflow-x: auto;
+    border-right: 0;
+    border-bottom: 1px solid color-mix(in oklab, var(--border) 68%, transparent);
+  }
+
+  .workbenchBody > :global(.authoring-editor-outline) ol {
+    display: flex;
+    gap: 0.2rem;
+    min-width: max-content;
+  }
+
+  .workbenchBody > :global(.authoring-editor-outline) li {
+    padding-left: 0;
+  }
+
+  .root[data-focus-mode] .workbenchBody > :global(.authoring-editor-outline) {
+    display: none;
+  }
+
+  .workbenchBody :global(.authoring-editor-document-header) {
+    width: 100%;
+    padding: 1.65rem 1.25rem 0;
+  }
+
+  .compatibilityNotice {
+    display: grid;
+    gap: 0.18rem;
+  }
+
+  .footer > span:first-child {
+    max-width: 72%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root,
+  .modeSwitch button,
+  .toolButton {
+    transition: none;
+  }
+}

@@ -1,0 +1,6 @@
+*
+!Dockerfile
+!THIRD_PARTY_NOTICES.md
+!entrypoint.py
+!requirements.lock
+!server.py

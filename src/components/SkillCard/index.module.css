@@ -1,0 +1,241 @@
+.card {
+  scroll-margin-top: 7rem;
+  --skill-card-accent: #2f7a59;
+
+  position: relative;
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--foreground);
+  background:
+    radial-gradient(circle at 92% 0%, color-mix(in oklab, var(--skill-card-accent) 7%, transparent), transparent 38%),
+    color-mix(in oklab, var(--surface) 95%, var(--catalog-canvas, var(--background)));
+  border-radius: 1.05rem;
+  outline: none;
+  box-shadow:
+    0 1px 0 color-mix(in oklab, var(--foreground) 4%, transparent),
+    0 18px 44px -42px color-mix(in oklab, var(--foreground) 36%, transparent);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 13.5rem;
+  transition: box-shadow 180ms ease, transform 180ms ease;
+}
+
+.card:hover {
+  box-shadow:
+    0 1px 0 color-mix(in oklab, var(--foreground) 5%, transparent),
+    0 22px 48px -38px color-mix(in oklab, var(--skill-card-accent) 17%, var(--foreground));
+  transform: translateY(-2px);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--catalog-accent, var(--skill-card-accent));
+  outline-offset: 3px;
+}
+
+.featured {
+  background:
+    radial-gradient(circle at 92% 0%, color-mix(in oklab, var(--skill-card-accent) 11%, transparent), transparent 42%),
+    color-mix(in oklab, var(--surface) 93%, var(--catalog-canvas, var(--background)));
+}
+
+.inner {
+  display: flex;
+  min-height: 13.5rem;
+  padding: 0.98rem;
+  flex-direction: column;
+}
+
+.header {
+  display: grid;
+  min-width: 0;
+  gap: 0.75rem;
+  align-items: start;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.identity {
+  display: flex;
+  min-width: 0;
+  gap: 0.72rem;
+  align-items: center;
+}
+
+.iconBase {
+  display: grid;
+  flex: none;
+  place-items: center;
+  overflow: hidden;
+}
+
+.icon {
+  width: 2.7rem;
+  height: 2.7rem;
+  padding: 0.42rem;
+  color: color-mix(in oklab, var(--skill-card-accent) 78%, var(--foreground));
+  background: color-mix(in oklab, var(--skill-card-accent) 9%, var(--surface-secondary));
+  border-radius: 0.86rem;
+}
+
+.identityCopy {
+  min-width: 0;
+}
+
+.titleRow {
+  display: flex;
+  min-width: 0;
+  gap: 0.38rem;
+  align-items: center;
+}
+
+.title {
+  min-width: 0;
+  overflow: hidden;
+  font-size: 0.92rem;
+  line-height: 1.3;
+  font-weight: 780;
+  letter-spacing: -0.025em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mark {
+  display: inline-flex;
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  color: color-mix(in oklab, var(--success) 74%, var(--foreground));
+}
+
+.mark svg {
+  width: 0.82rem;
+  height: 0.82rem;
+}
+
+.category {
+  display: block;
+  margin-top: 0.22rem;
+  overflow: hidden;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  font-weight: 620;
+  color: var(--muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.security {
+  display: inline-flex;
+  flex: none;
+}
+
+.security :global(.public-security-badge[data-compact]) {
+  min-height: 1.65rem;
+  padding: 0.22rem 0.45rem;
+  font-size: 0.66rem;
+  white-space: nowrap;
+  background: color-mix(in oklab, var(--surface-secondary) 74%, var(--surface));
+  border-color: transparent;
+  border-radius: 0.48rem;
+}
+
+.security :global(.public-security-badge[data-compact] strong) {
+  padding-left: 0.32rem;
+}
+
+.content {
+  display: flex;
+  min-width: 0;
+  margin-top: 0.86rem;
+  flex: 1;
+  flex-direction: column;
+}
+
+.summary {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 0.81rem;
+  line-height: 1.55;
+  color: var(--muted);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.summaryLabel {
+  margin-right: 0.45rem;
+  font-size: 0.68rem;
+  font-weight: 720;
+  color: var(--foreground);
+}
+
+.signals {
+  display: flex;
+  min-width: 0;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 0.72rem;
+  overflow: hidden;
+}
+
+.signal {
+  display: inline-flex;
+  min-width: 0;
+  min-height: 1.5rem;
+  align-items: center;
+  padding-inline: 0.5rem;
+  overflow: hidden;
+  font-size: 0.7rem;
+  font-weight: 680;
+  color: color-mix(in oklab, var(--skill-card-accent) 58%, var(--foreground));
+  background: color-mix(in oklab, var(--skill-card-accent) 7%, var(--surface-secondary));
+  border-radius: 0.48rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.footer {
+  display: flex;
+  min-width: 0;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.62rem;
+  margin-top: 0.62rem;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.author {
+  min-width: 0;
+  overflow: hidden;
+  font-weight: 700;
+  color: color-mix(in oklab, var(--foreground) 88%, var(--muted));
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.version {
+  flex: none;
+  font-family: var(--font-mono, ui-monospace), monospace;
+  font-size: 0.66rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.screenReaderOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+}

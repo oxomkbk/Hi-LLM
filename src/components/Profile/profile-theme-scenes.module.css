@@ -1,0 +1,482 @@
+.scene {
+  --profile-scene-fade: color-mix(in oklch, var(--profile-paper) 74%, transparent);
+}
+
+/* The page canvas and the cover share one material story for every preset. */
+.scene[data-profile-theme-variant='page'][data-profile-preset='apple-studio'] {
+  background:
+    linear-gradient(126deg, transparent 0 68%, rgb(115 184 255 / 5%) 68% 76%, transparent 76%),
+    radial-gradient(ellipse 48rem 28rem at 5% -7%, rgb(111 190 255 / 13%), transparent 69%),
+    radial-gradient(ellipse 42rem 25rem at 94% -4%, rgb(255 177 210 / 8%), transparent 72%),
+    var(--profile-paper);
+}
+
+.scene[data-profile-theme-variant='page'][data-profile-preset='sea-glass'] {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklch, var(--profile-paper) 86%, #d9efff 14%) 0,
+      color-mix(in oklch, var(--profile-paper) 74%, transparent) 18rem,
+      transparent 42rem
+    ),
+    var(--profile-paper);
+}
+
+.scene[data-profile-theme-variant='page'][data-profile-preset='daybreak'] {
+  background:
+    linear-gradient(112deg, color-mix(in oklch, var(--profile-accent) 7%, transparent) 0, transparent 26rem),
+    linear-gradient(
+      180deg,
+      color-mix(in oklch, var(--profile-paper) 94%, #ffead5 6%) 0,
+      color-mix(in oklch, var(--profile-paper) 78%, transparent) 18rem,
+      transparent 42rem
+    ),
+    var(--profile-paper);
+}
+
+.scene[data-profile-theme-variant='page'][data-profile-preset='peach-haze'] {
+  background:
+    radial-gradient(circle at 92% 36rem, color-mix(in oklch, var(--profile-accent) 7%, transparent), transparent 24rem),
+    linear-gradient(
+      180deg,
+      color-mix(in oklch, var(--profile-paper) 91%, #ffe6dc 9%) 0,
+      color-mix(in oklch, var(--profile-paper) 74%, transparent) 20rem,
+      transparent 46rem
+    ),
+    var(--profile-paper);
+}
+
+.scene[data-profile-theme-variant='page'][data-profile-preset='lime-air'] {
+  background:
+    linear-gradient(146deg, transparent 0 76%, color-mix(in oklch, var(--profile-accent-secondary) 6%, transparent) 76% 100%),
+    radial-gradient(ellipse 46rem 27rem at 92% -8%, color-mix(in oklch, var(--profile-accent) 11%, transparent), transparent 71%),
+    var(--profile-paper);
+}
+
+.scene[data-profile-theme-variant='page'][data-profile-preset='carbon-forge'] {
+  background:
+    repeating-linear-gradient(135deg, transparent 0 2rem, color-mix(in oklch, var(--profile-ink) 2.2%, transparent) 2rem calc(2rem + 1px)),
+    linear-gradient(
+      116deg,
+      color-mix(in oklch, var(--profile-paper) 88%, #dce0e5 12%) 0,
+      color-mix(in oklch, var(--profile-paper) 72%, transparent) 15rem,
+      transparent 38rem
+    ),
+    var(--profile-paper);
+}
+
+.scene[data-profile-theme-variant='page'][data-profile-preset='polar-signal'] {
+  background:
+    radial-gradient(circle 25rem at 92% 31rem, transparent 0 48%, color-mix(in oklch, var(--profile-accent) 9%, transparent) 48% 48.3%, transparent 48.3%),
+    radial-gradient(ellipse 50rem 28rem at 90% -6%, color-mix(in oklch, var(--profile-accent-secondary) 12%, transparent), transparent 70%),
+    linear-gradient(
+      180deg,
+      color-mix(in oklch, var(--profile-paper) 88%, #d9f4f4 12%) 0,
+      color-mix(in oklch, var(--profile-paper) 74%, transparent) 20rem,
+      transparent 46rem
+    ),
+    var(--profile-paper);
+}
+
+.scene[data-profile-theme-variant='page'][data-profile-preset='sakura-silk'] {
+  background:
+    linear-gradient(128deg, transparent 0 64%, color-mix(in oklch, var(--profile-accent) 5%, transparent) 64% 70%, transparent 70%),
+    radial-gradient(ellipse 44rem 26rem at 8% -5%, color-mix(in oklch, var(--profile-accent) 11%, transparent), transparent 71%),
+    linear-gradient(
+      180deg,
+      color-mix(in oklch, var(--profile-paper) 90%, #ffe7ed 10%) 0,
+      color-mix(in oklch, var(--profile-paper) 75%, transparent) 20rem,
+      transparent 46rem
+    ),
+    var(--profile-paper);
+}
+
+.scene[data-profile-theme-variant='page'][data-profile-preset='wisteria-dusk'] {
+  background:
+    repeating-linear-gradient(102deg, transparent 0 6rem, color-mix(in oklch, var(--profile-ink) 2.5%, transparent) 6rem calc(6rem + 1px)),
+    radial-gradient(ellipse 38rem 24rem at 94% 5%, color-mix(in oklch, var(--profile-accent) 9%, transparent), transparent 72%),
+    linear-gradient(
+      180deg,
+      color-mix(in oklch, var(--profile-paper) 92%, #e9e0d3 8%) 0,
+      color-mix(in oklch, var(--profile-paper) 76%, transparent) 21rem,
+      transparent 48rem
+    ),
+    var(--profile-paper);
+}
+
+.scene[data-profile-theme-variant='page'][data-profile-preset='lacquer-gold'] {
+  background:
+    linear-gradient(108deg, color-mix(in oklch, var(--profile-accent) 6%, transparent) 0, transparent 28rem),
+    radial-gradient(ellipse 38rem 24rem at 90% 4%, color-mix(in oklch, var(--profile-accent-secondary) 10%, transparent), transparent 72%),
+    linear-gradient(
+      180deg,
+      color-mix(in oklch, var(--profile-paper) 90%, #f3e1b9 10%) 0,
+      color-mix(in oklch, var(--profile-paper) 75%, transparent) 20rem,
+      transparent 46rem
+    ),
+    var(--profile-paper);
+}
+
+/* New collection: page atmosphere. */
+.scene[data-profile-preset='carbon-forge'] .atmosphere > i:first-child {
+  top: 28rem;
+  right: -13rem;
+  width: min(46rem, 56vw);
+  height: 32rem;
+  opacity: 0.1;
+  background: linear-gradient(135deg, transparent 0 24%, var(--profile-ink) 24% 71%, transparent 71%);
+  clip-path: polygon(24% 0, 100% 0, 76% 100%, 0 100%);
+}
+
+.scene[data-profile-preset='carbon-forge'] .atmosphere > i:nth-child(2) {
+  top: 43rem;
+  right: 4%;
+  width: min(34rem, 42vw);
+  height: 14rem;
+  opacity: 0.14;
+  background:
+    repeating-linear-gradient(135deg, var(--profile-ink) 0 1px, transparent 1px 0.7rem),
+    repeating-linear-gradient(45deg, color-mix(in oklch, var(--profile-ink) 60%, transparent) 0 1px, transparent 1px 0.7rem);
+  clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
+}
+
+.scene[data-profile-preset='carbon-forge'] .atmosphere > i:last-child {
+  top: 39rem;
+  right: -2rem;
+  width: min(36rem, 44vw);
+  height: 0.2rem;
+  opacity: 0.38;
+  background: linear-gradient(90deg, transparent, var(--profile-accent) 20% 84%, transparent);
+  rotate: -14deg;
+}
+
+.scene[data-profile-preset='polar-signal'] .atmosphere > i:first-child {
+  top: 29rem;
+  right: -10rem;
+  width: min(42rem, 52vw);
+  aspect-ratio: 1;
+  opacity: 0.2;
+  border: 1px solid color-mix(in oklch, var(--profile-accent) 48%, transparent);
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 0 5rem color-mix(in oklch, var(--profile-accent) 3%, transparent),
+    inset 0 0 0 10rem color-mix(in oklch, var(--profile-accent-secondary) 3%, transparent);
+}
+
+.scene[data-profile-preset='polar-signal'] .atmosphere > i:nth-child(2) {
+  top: 49rem;
+  right: 0;
+  width: min(48rem, 58vw);
+  height: 1px;
+  opacity: 0.45;
+  background: linear-gradient(90deg, transparent, var(--profile-accent-secondary) 23% 70%, transparent);
+  box-shadow: 0 0 1.3rem color-mix(in oklch, var(--profile-accent-secondary) 28%, transparent);
+}
+
+.scene[data-profile-preset='polar-signal'] .atmosphere > i:last-child {
+  top: 42rem;
+  right: 9%;
+  width: 0.48rem;
+  height: 0.48rem;
+  opacity: 0.55;
+  background: var(--profile-accent-secondary);
+  border-radius: 50%;
+  box-shadow:
+    -7rem 6rem 0 color-mix(in oklch, var(--profile-accent) 70%, transparent),
+    -14rem 12rem 0 color-mix(in oklch, var(--profile-accent-secondary) 50%, transparent),
+    0 0 1.2rem color-mix(in oklch, var(--profile-accent-secondary) 48%, transparent);
+}
+
+.scene[data-profile-preset='sakura-silk'] .atmosphere > i:first-child {
+  top: 27rem;
+  right: -13rem;
+  width: min(43rem, 52vw);
+  height: 38rem;
+  opacity: 0.13;
+  background: linear-gradient(110deg, transparent, var(--profile-accent) 34%, color-mix(in oklch, var(--profile-accent-secondary) 75%, transparent) 66%, transparent);
+  border-radius: 52% 48% 44% 56% / 58% 38% 62% 42%;
+  rotate: 12deg;
+}
+
+.scene[data-profile-preset='sakura-silk'] .atmosphere > i:nth-child(2) {
+  top: 45rem;
+  left: -9rem;
+  width: min(34rem, 42vw);
+  height: 16rem;
+  opacity: 0.12;
+  background: linear-gradient(100deg, transparent, var(--profile-accent) 48%, transparent);
+  border-radius: 999px;
+  rotate: -8deg;
+}
+
+.scene[data-profile-preset='sakura-silk'] .atmosphere > i:last-child {
+  top: 47rem;
+  right: 6%;
+  width: min(28rem, 34vw);
+  height: 1px;
+  opacity: 0.28;
+  background: linear-gradient(90deg, transparent, var(--profile-accent-secondary), transparent);
+  rotate: -9deg;
+}
+
+.scene[data-profile-preset='wisteria-dusk'] .atmosphere > i:first-child {
+  top: 31rem;
+  right: -10rem;
+  width: min(38rem, 47vw);
+  height: 42rem;
+  opacity: 0.09;
+  background: var(--profile-accent);
+  border-radius: 70% 0 0 30% / 45% 0 0 55%;
+  rotate: -11deg;
+}
+
+.scene[data-profile-preset='wisteria-dusk'] .atmosphere > i:nth-child(2) {
+  top: 41rem;
+  right: 9%;
+  width: 0.15rem;
+  height: 32rem;
+  opacity: 0.2;
+  background: linear-gradient(180deg, var(--profile-accent-secondary), var(--profile-accent), transparent);
+  rotate: 19deg;
+}
+
+.scene[data-profile-preset='wisteria-dusk'] .atmosphere > i:last-child {
+  top: 42rem;
+  right: 12%;
+  width: 0.42rem;
+  height: 0.42rem;
+  opacity: 0.38;
+  background: var(--profile-accent-secondary);
+  border-radius: 50%;
+  box-shadow:
+    -2.4rem 4rem 0 color-mix(in oklch, var(--profile-accent) 56%, transparent),
+    1.8rem 8rem 0 color-mix(in oklch, var(--profile-accent) 42%, transparent),
+    -4.5rem 12rem 0 color-mix(in oklch, var(--profile-accent-secondary) 48%, transparent);
+}
+
+.scene[data-profile-preset='lacquer-gold'] .atmosphere > i:first-child {
+  top: 26rem;
+  right: -16rem;
+  width: min(50rem, 60vw);
+  height: 48rem;
+  opacity: 0.08;
+  background: var(--profile-accent);
+  border-radius: 54% 0 0 46%;
+  rotate: 8deg;
+}
+
+.scene[data-profile-preset='lacquer-gold'] .atmosphere > i:nth-child(2) {
+  top: 41rem;
+  right: 7%;
+  width: min(25rem, 31vw);
+  height: 18rem;
+  opacity: 0.17;
+  background: var(--profile-accent-secondary);
+  clip-path: polygon(4% 15%, 31% 0, 46% 23%, 72% 9%, 100% 34%, 82% 67%, 55% 61%, 33% 100%, 0 74%);
+}
+
+.scene[data-profile-preset='lacquer-gold'] .atmosphere > i:last-child {
+  top: 47rem;
+  left: 4%;
+  width: min(29rem, 36vw);
+  height: 0.28rem;
+  opacity: 0.2;
+  background: linear-gradient(90deg, transparent, var(--profile-ink) 24% 83%, transparent);
+  rotate: 7deg;
+}
+
+/* New collection: cover washes. */
+.scene :global([data-profile-backdrop][data-profile-preset='carbon-forge']) > :global([data-backdrop-layer='wash']) {
+  background:
+    linear-gradient(105deg, #080a0d 0 48%, rgb(8 10 13 / 54%) 68%),
+    linear-gradient(135deg, #292e35, #111419 72%);
+}
+
+.scene :global([data-profile-backdrop][data-profile-preset='polar-signal']) > :global([data-backdrop-layer='wash']) {
+  background:
+    radial-gradient(circle 24rem at 86% 48%, rgb(64 217 220 / 14%), transparent 61%),
+    linear-gradient(110deg, #020914 0 49%, #092b43 76%, #0b4653 100%);
+}
+
+.scene :global([data-profile-backdrop][data-profile-preset='sakura-silk']) > :global([data-backdrop-layer='wash']) {
+  background: linear-gradient(110deg, #26141e 0 51%, #743047 76%, #bd5f76 100%);
+}
+
+.scene :global([data-profile-backdrop][data-profile-preset='wisteria-dusk']) > :global([data-backdrop-layer='wash']) {
+  background: linear-gradient(112deg, #15101f 0 50%, #3d2a50 76%, #69527f 100%);
+}
+
+.scene :global([data-profile-backdrop][data-profile-preset='lacquer-gold']) > :global([data-backdrop-layer='wash']) {
+  background:
+    radial-gradient(ellipse 24rem 31rem at 84% 36%, rgb(206 157 70 / 15%), transparent 67%),
+    linear-gradient(108deg, #100c0a 0 52%, #46110e 76%, #7c2118 100%);
+}
+
+.scene :global([data-profile-backdrop][data-profile-preset='carbon-forge']) {
+  border-radius: 0.55rem;
+  clip-path: polygon(0 0, calc(100% - 1.5rem) 0, 100% 1.5rem, 100% 100%, 1.5rem 100%, 0 calc(100% - 1.5rem));
+}
+
+.scene :global([data-profile-backdrop][data-profile-preset='polar-signal']) { border-radius: 2rem 2rem 0.7rem 2rem; }
+.scene :global([data-profile-backdrop][data-profile-preset='sakura-silk']) { border-radius: 2.4rem 0.9rem 2.4rem 0.9rem; }
+.scene :global([data-profile-backdrop][data-profile-preset='wisteria-dusk']) { border-radius: 2.5rem 2.5rem 2.5rem 0.7rem; }
+
+.scene :global([data-profile-backdrop][data-profile-preset='lacquer-gold']) {
+  border: 1px solid rgb(214 169 82 / 30%);
+  border-radius: 0.55rem;
+  box-shadow:
+    inset 0 0 0 1px rgb(255 226 157 / 7%),
+    0 1.5rem 3.8rem rgb(59 16 8 / 18%);
+}
+
+/* New collection: identity, ledger and controls. */
+.scene :global([data-profile-backdrop][data-profile-preset='carbon-forge']) :global([data-profile-avatar]) {
+  border-radius: 0.35rem;
+  clip-path: polygon(16% 0, 100% 0, 100% 84%, 84% 100%, 0 100%, 0 16%);
+}
+
+.scene :global([data-profile-backdrop][data-profile-preset='carbon-forge']) :global([data-profile-title]) {
+  font-family: var(--font-mono, ui-monospace), monospace;
+  font-weight: 760;
+  letter-spacing: -0.065em;
+}
+
+.scene :global([data-profile-backdrop][data-profile-preset='carbon-forge']) :global([data-profile-ledger]) {
+  background: rgb(9 11 14 / 82%);
+  border-color: rgb(188 197 208 / 22%);
+  border-radius: 0.4rem;
+  box-shadow: 0.5rem 0.5rem 0 rgb(255 83 55 / 12%);
+  backdrop-filter: none;
+}
+
+.scene :global([data-profile-backdrop][data-profile-preset='carbon-forge']) :global([data-profile-actions]) > * { border-radius: 0.3rem; }
+
+.scene :global([data-profile-backdrop][data-profile-preset='polar-signal']) :global([data-profile-avatar]) {
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.45rem rgb(89 215 218 / 9%), 0 0 2rem rgb(62 198 211 / 18%);
+}
+
+.scene :global([data-profile-backdrop][data-profile-preset='polar-signal']) :global([data-profile-ledger]) {
+  background: linear-gradient(145deg, rgb(113 226 229 / 12%), rgb(8 42 62 / 46%));
+  border-color: rgb(127 230 231 / 24%);
+  border-radius: 1.6rem 1.6rem 0.45rem 1.6rem;
+  box-shadow: inset 0 1px rgb(210 255 255 / 16%);
+  backdrop-filter: blur(18px) saturate(120%);
+}
+
+.scene :global([data-profile-backdrop][data-profile-preset='polar-signal']) :global([data-profile-actions]) > * { border-radius: 999px; }
+
+.scene :global([data-profile-backdrop][data-profile-preset='sakura-silk']) :global([data-profile-avatar]) { border-radius: 48% 48% 1rem 48%; }
+
+.scene :global([data-profile-backdrop][data-profile-preset='sakura-silk']) :global([data-profile-title]) {
+  font-family: ui-serif, 'Songti SC', 'Noto Serif CJK SC', Georgia, serif;
+  font-weight: 680;
+  letter-spacing: -0.045em;
+}
+
+.scene :global([data-profile-backdrop][data-profile-preset='sakura-silk']) :global([data-profile-ledger]) {
+  background: linear-gradient(145deg, rgb(255 231 239 / 15%), rgb(95 34 56 / 42%));
+  border-color: rgb(255 223 233 / 24%);
+  border-radius: 1.8rem 0.65rem 1.8rem 0.65rem;
+  box-shadow: inset 0 1px rgb(255 255 255 / 15%);
+  backdrop-filter: blur(16px);
+}
+
+.scene :global([data-profile-backdrop][data-profile-preset='sakura-silk']) :global([data-profile-actions]) > * { border-radius: 1rem 0.35rem 1rem 0.35rem; }
+
+.scene :global([data-profile-backdrop][data-profile-preset='wisteria-dusk']) :global([data-profile-avatar]) { border-radius: 999px 999px 0.5rem 0.5rem; }
+
+.scene :global([data-profile-backdrop][data-profile-preset='wisteria-dusk']) :global([data-profile-title]) {
+  font-family: ui-serif, 'Songti SC', 'Noto Serif CJK SC', Georgia, serif;
+  font-weight: 650;
+  letter-spacing: -0.04em;
+}
+
+.scene :global([data-profile-backdrop][data-profile-preset='wisteria-dusk']) :global([data-profile-ledger]) {
+  background: rgb(45 29 60 / 64%);
+  border-color: rgb(224 205 236 / 22%);
+  border-radius: 1.65rem 1.65rem 1.65rem 0.4rem;
+  backdrop-filter: blur(14px);
+}
+
+.scene :global([data-profile-backdrop][data-profile-preset='wisteria-dusk']) :global([data-profile-actions]) > * { border-radius: 999px 999px 0.45rem 0.45rem; }
+
+.scene :global([data-profile-backdrop][data-profile-preset='lacquer-gold']) :global([data-profile-avatar]) {
+  border: 2px solid rgb(218 174 88 / 72%);
+  border-radius: 50% 50% 0.35rem 0.35rem;
+}
+
+.scene :global([data-profile-backdrop][data-profile-preset='lacquer-gold']) :global([data-profile-title]) {
+  font-family: ui-serif, 'Songti SC', 'Noto Serif CJK SC', Georgia, serif;
+  font-weight: 720;
+  letter-spacing: -0.035em;
+}
+
+.scene :global([data-profile-backdrop][data-profile-preset='lacquer-gold']) :global([data-profile-ledger]) {
+  background: rgb(30 13 10 / 78%);
+  border-color: rgb(218 174 88 / 28%);
+  border-radius: 0.35rem;
+  box-shadow: inset 0 0 2.5rem rgb(173 42 27 / 10%);
+  backdrop-filter: blur(8px);
+}
+
+.scene :global([data-profile-backdrop][data-profile-preset='lacquer-gold']) :global([data-profile-actions]) > * {
+  border-color: rgb(218 174 88 / 32%);
+  border-radius: 0.35rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .scene[data-profile-preset='carbon-forge'] .atmosphere > i:last-child { animation: forge-line 12s ease-in-out infinite; }
+  .scene[data-profile-preset='polar-signal'] .atmosphere > i:first-child { animation: sonar-breathe 15s ease-in-out infinite; }
+  .scene[data-profile-preset='polar-signal'] .atmosphere > i:last-child { animation: sonar-marker 7s ease-in-out infinite; }
+  .scene[data-profile-preset='sakura-silk'] .atmosphere > i:first-child { animation: silk-drift 18s ease-in-out infinite alternate; }
+  .scene[data-profile-preset='wisteria-dusk'] .atmosphere > i:last-child { animation: botanical-sway 14s ease-in-out infinite alternate; }
+  .scene[data-profile-preset='lacquer-gold'] .atmosphere > i:nth-child(2) { animation: gold-leaf-drift 17s ease-in-out infinite alternate; }
+}
+
+@keyframes forge-line {
+  0%, 100% { opacity: 0.2; translate: -0.8rem 0; }
+  50% { opacity: 0.48; translate: 0.8rem 0; }
+}
+
+@keyframes sonar-breathe {
+  0%, 100% { opacity: 0.13; scale: 0.96; }
+  50% { opacity: 0.27; scale: 1.04; }
+}
+
+@keyframes sonar-marker {
+  0%, 100% { opacity: 0.28; scale: 0.9; }
+  50% { opacity: 0.68; scale: 1.12; }
+}
+
+@keyframes silk-drift {
+  from { translate: 0 0; rotate: 12deg; }
+  to { translate: -0.8rem 0.55rem; rotate: 10deg; }
+}
+
+@keyframes botanical-sway {
+  from { translate: 0 0; rotate: -1deg; }
+  to { translate: -0.35rem 0.5rem; rotate: 2deg; }
+}
+
+@keyframes gold-leaf-drift {
+  from { translate: 0 0; rotate: 0deg; }
+  to { translate: -0.45rem 0.4rem; rotate: 1.5deg; }
+}
+
+@media (width < 48rem) {
+  .scene :global([data-profile-backdrop][data-profile-preset='carbon-forge']),
+  .scene :global([data-profile-backdrop][data-profile-preset='lacquer-gold']) { clip-path: none; }
+
+  .scene[data-profile-preset='carbon-forge'] .atmosphere,
+  .scene[data-profile-preset='polar-signal'] .atmosphere,
+  .scene[data-profile-preset='sakura-silk'] .atmosphere,
+  .scene[data-profile-preset='wisteria-dusk'] .atmosphere,
+  .scene[data-profile-preset='lacquer-gold'] .atmosphere { opacity: 0.48; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atmosphere > i { animation: none !important; }
+}
+
+:global([data-reduce-motion='true']) .atmosphere > i { animation: none !important; }

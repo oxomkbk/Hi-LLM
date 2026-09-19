@@ -1,0 +1,120 @@
+services:
+  control-postgres:
+    image: postgres:17.11-alpine
+    environment:
+      POSTGRES_DB: hillm_nav_control
+      POSTGRES_PASSWORD: hillm_nav
+      POSTGRES_USER: hillm_nav
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U hillm_nav -d hillm_nav_control]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    ports:
+      - '127.0.0.1:5433:5432'
+    volumes:
+      - hillm_nav_control_data:/var/lib/postgresql/data
+
+  business-postgres:
+    image: postgres:17.11-alpine
+    environment:
+      POSTGRES_DB: hillm_nav_business
+      POSTGRES_PASSWORD: hillm_nav
+      POSTGRES_USER: hillm_nav
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U hillm_nav -d hillm_nav_business]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    ports:
+      - '127.0.0.1:5434:5432'
+    volumes:
+      - hillm_nav_business_data:/var/lib/postgresql/data
+
+  security-gateway:
+    profiles: [security-deep]
+    build:
+      context: .
+      dockerfile: security/gateway-service/Dockerfile
+    depends_on:
+      control-postgres:
+        condition: service_healthy
+    environment:
+      AI_SECURITY_GATEWAY_LISTEN_HOST: 0.0.0.0
+      AI_SECURITY_GATEWAY_LISTEN_PORT: 8092
+      AI_SECURITY_SCANNER_SHARED_SECRET: ${AI_SECURITY_SCANNER_SHARED_SECRET:-}
+      CONFIG_ENCRYPTION_KEY: ${CONFIG_ENCRYPTION_KEY:?configure CONFIG_ENCRYPTION_KEY}
+      CONTROL_DATABASE_URL: postgresql://hillm_nav:hillm_nav@control-postgres:5432/hillm_nav_control
+    networks: [default, security-internal]
+    read_only: true
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+    tmpfs:
+      - /tmp:size=16m,mode=1777
+
+  security-scanner:
+    profiles: [security-deep]
+    build:
+      context: security/scanner-service
+    depends_on:
+      security-gateway:
+        condition: service_started
+    environment:
+      LLM_GATEWAY_URL: http://security-gateway:8092/v1
+      SCANNER_MODEL: ${AI_SECURITY_SCANNER_MODEL:-}
+      SCANNER_SHARED_SECRET: ${AI_SECURITY_SCANNER_SHARED_SECRET:-}
+      SCANNER_TEMP_ROOT: /work/tmp
+    networks: [security-internal]
+    ports:
+      - '127.0.0.1:8091:8091'
+    read_only: true
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+    pids_limit: 96
+    mem_limit: 1g
+    cpus: 2
+    tmpfs:
+      - /work/tmp:size=256m,mode=0700,uid=10001,gid=10001
+      - /work/output:size=16m,mode=0700,uid=10001,gid=10001
+
+  security-worker:
+    profiles: [security]
+    build:
+      context: .
+      dockerfile: security/worker-service/Dockerfile
+    depends_on:
+      business-postgres:
+        condition: service_healthy
+      control-postgres:
+        condition: service_healthy
+    environment:
+      AI_SECURITY_LOCAL_ONLY: ${AI_SECURITY_LOCAL_ONLY:-true}
+      AI_SECURITY_SCANNER_MODEL: ${AI_SECURITY_SCANNER_MODEL:-}
+      AI_SECURITY_SCANNER_SHARED_SECRET: ${AI_SECURITY_SCANNER_SHARED_SECRET:-}
+      AI_SECURITY_SCANNER_URL: ${AI_SECURITY_SCANNER_URL:-http://security-scanner:8091}
+      AI_SECURITY_WORKER_CONCURRENCY_CAP: ${AI_SECURITY_WORKER_CONCURRENCY_CAP:-4}
+      AI_SECURITY_WORKER_ID: compose-security-worker
+      BUSINESS_DATABASE_URL: postgresql://hillm_nav:hillm_nav@business-postgres:5432/hillm_nav_business
+      CONFIG_ENCRYPTION_KEY: ${CONFIG_ENCRYPTION_KEY:?configure CONFIG_ENCRYPTION_KEY}
+      CONTROL_DATABASE_URL: postgresql://hillm_nav:hillm_nav@control-postgres:5432/hillm_nav_control
+    healthcheck:
+      test: [CMD, node, --conditions=react-server, --import, tsx, scripts/ai-security-worker.ts, --check]
+      interval: 30s
+      timeout: 15s
+      retries: 3
+      start_period: 20s
+    networks: [default, security-internal]
+    read_only: true
+    restart: unless-stopped
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+    tmpfs:
+      - /tmp:size=256m,mode=0700,uid=10001,gid=10001
+
+networks:
+  security-internal:
+    internal: true
+
+volumes:
+  hillm_nav_business_data:
+  hillm_nav_control_data:

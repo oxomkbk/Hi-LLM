@@ -1,0 +1,138 @@
+.dialog {
+  overflow: hidden;
+}
+.header {
+  border-bottom: 1px solid var(--border);
+}
+
+.header p {
+  margin-top: 0.25rem;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.body {
+  min-height: min(34rem, 70vh);
+  padding-block: 1rem;
+}
+
+.toolbar {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.search {
+  min-width: 0;
+  flex: 1;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: 0.75rem;
+}
+
+.item {
+  min-width: 0;
+  padding: 0;
+  overflow: hidden;
+  color: inherit;
+  text-align: left;
+  background: var(--surface-secondary);
+  border: 1px solid color-mix(in oklab, var(--border) 85%, transparent);
+  border-radius: 0.9rem;
+  cursor: pointer;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.item:hover {
+  border-color: color-mix(in oklab, var(--accent) 55%, var(--border));
+  transform: translateY(-1px);
+}
+
+.item[data-selected="true"] {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--accent) 18%, transparent);
+}
+
+.thumbnail {
+  display: grid;
+  height: 7.5rem;
+  place-items: center;
+  overflow: hidden;
+  color: var(--muted);
+  background: color-mix(in oklab, var(--surface) 68%, var(--surface-secondary));
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fileType {
+  padding: 0.45rem 0.6rem;
+  font: 700 0.68rem/1 ui-monospace, SFMono-Regular, Consolas, monospace;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.45rem;
+}
+
+.itemCopy {
+  display: block;
+  padding: 0.65rem 0.7rem 0.75rem;
+}
+
+.itemCopy strong,
+.itemCopy small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemCopy strong {
+  font-size: 0.78rem;
+}
+
+.itemCopy small {
+  margin-top: 0.3rem;
+  color: var(--muted);
+  font-size: 0.66rem;
+}
+
+.empty {
+  display: grid;
+  min-height: 20rem;
+  place-items: center;
+  align-content: center;
+  gap: 0.7rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.empty svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.footer {
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 42rem) {
+  .toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .thumbnail {
+    height: 6.5rem;
+  }
+}

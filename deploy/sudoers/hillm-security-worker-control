@@ -1,0 +1,6 @@
+# Install as /etc/sudoers.d/hillm-security-worker-control with mode 0440.
+# Replace only the leading web-service user if hillm-nav.service uses another non-root user.
+Cmnd_Alias HILLM_SECURITY_WORKER_CONTROL = /usr/bin/systemctl --no-block enable --now hillm-security-worker.service, \
+    /usr/bin/systemctl --no-block disable --now hillm-security-worker.service
+
+hillm-nav ALL=(root) NOPASSWD: HILLM_SECURITY_WORKER_CONTROL

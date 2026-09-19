@@ -1,0 +1,21 @@
+# Resolved with CPython 3.11 on 2026-08-21 from aig-skill-scan==0.2.1.
+# The scanner wheel is additionally verified in Dockerfile against:
+# sha256:1a55f99199b0d0c2e2270a00ef8a1913b15eab69752bdd662630205ae453a62c
+annotated-types==0.8.0
+anyio==4.14.2
+certifi==2026.7.22
+distro==1.9.0
+h11==0.16.0
+httpcore==1.0.9
+httpx==0.28.1
+idna==3.19
+jiter==0.16.0
+loguru==0.7.3
+openai==2.8.1
+pydantic==2.12.4
+pydantic-core==2.41.5
+python-dotenv==1.0.0
+sniffio==1.3.1
+tqdm==4.70.0
+typing-extensions==4.16.0
+typing-inspection==0.4.4

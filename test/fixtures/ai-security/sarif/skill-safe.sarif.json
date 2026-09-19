@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/main/Schemata/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "properties": { "securityScore": 100 },
+      "results": [],
+      "tool": { "driver": { "name": "aig-skill-scan", "version": "0.2.1" } }
+    }
+  ],
+  "version": "2.1.0"
+}

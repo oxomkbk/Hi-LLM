@@ -1,0 +1,189 @@
+.futureEditor {
+  --future-preview-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Preview materials echo the full scene without repainting another background. */
+.futureEditor > :global([data-profile-theme-variant='preview'][data-profile-preset='spatial-orbit']) :global([data-profile-preview-avatar]) {
+  color: #17191d;
+  background: linear-gradient(145deg, #fff, #dce2ea);
+  border-color: #fff;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 1px rgb(25 31 42 / 8%),
+    0 1rem 2.4rem rgb(35 48 70 / 16%);
+}
+
+.futureEditor > :global([data-profile-theme-variant='preview'][data-profile-preset='spatial-orbit']) :global([data-profile-preview-name]) {
+  font-weight: 720;
+  letter-spacing: -0.075em;
+}
+
+.futureEditor > :global([data-profile-theme-variant='preview'][data-profile-preset='spatial-orbit']) :global([data-profile-preview-stats]) {
+  color: #17191d;
+  background: rgb(255 255 255 / 68%);
+  border-color: rgb(255 255 255 / 80%);
+  border-radius: 1.55rem;
+  box-shadow:
+    inset 0 1px 0 #fff,
+    0 1rem 2.8rem rgb(39 53 78 / 11%);
+  backdrop-filter: blur(22px) saturate(130%);
+}
+
+.futureEditor > :global([data-profile-theme-variant='preview'][data-profile-preset='candy-cloud']) :global([data-profile-preview-avatar]) {
+  color: #57263c;
+  background:
+    radial-gradient(circle at 34% 28%, #fff 0 7%, transparent 8%),
+    linear-gradient(145deg, #ffd8e5, #e36a99 72%);
+  border: 2px solid rgb(255 248 244 / 88%);
+  border-radius: 1.65rem;
+  box-shadow:
+    0 0 0 1px rgb(109 42 73 / 8%),
+    0.55rem 0.65rem 0 rgb(159 70 108 / 8%);
+  rotate: -1.5deg;
+}
+
+.futureEditor > :global([data-profile-theme-variant='preview'][data-profile-preset='candy-cloud']) :global([data-profile-preview-name]) {
+  font-family: var(--font-sans);
+  font-weight: 760;
+  letter-spacing: -0.055em;
+}
+
+.futureEditor > :global([data-profile-theme-variant='preview'][data-profile-preset='candy-cloud']) :global([data-profile-preview-stats]) {
+  color: #4b2637;
+  background: rgb(255 250 246 / 88%);
+  border-color: #fff;
+  border-radius: 1.25rem 1.25rem 0.4rem 1.25rem;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 78%),
+    0 0.9rem 2.2rem rgb(126 70 94 / 8%);
+  rotate: 0.4deg;
+}
+
+.futureEditor > :global([data-profile-theme-variant='preview'][data-profile-preset='neon-district']) :global([data-profile-preview-avatar]) {
+  color: #06131a;
+  background: linear-gradient(145deg, #5fe4f0 0 72%, #efb247 72%);
+  border: 1px solid #73e6f1;
+  border-radius: 0.15rem;
+  box-shadow: 0 0 1.2rem rgb(62 214 231 / 20%);
+}
+
+.futureEditor > :global([data-profile-theme-variant='preview'][data-profile-preset='neon-district']) :global([data-profile-preview-name]) {
+  font-weight: 790;
+  letter-spacing: -0.06em;
+}
+
+.futureEditor > :global([data-profile-theme-variant='preview'][data-profile-preset='neon-district']) :global([data-profile-preview-stats]) {
+  background: rgb(4 10 20 / 86%);
+  border: 1px solid rgb(76 218 235 / 26%);
+  border-radius: 0.15rem;
+  box-shadow:
+    inset 0.22rem 0 0 #42d6e8,
+    0.45rem 0.45rem 0 rgb(227 66 146 / 7%);
+  backdrop-filter: none;
+}
+
+.futureEditor > :global([data-profile-theme-variant='preview'][data-profile-preset='terminal-zero']) :global([data-profile-preview-avatar]) {
+  color: #07110a;
+  background: #80e594;
+  border: 1px solid #a9efb6;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.futureEditor > :global([data-profile-theme-variant='preview'][data-profile-preset='terminal-zero']) :global([data-profile-preview-name]) {
+  font-family: var(--font-mono, ui-monospace), monospace;
+  font-weight: 650;
+  letter-spacing: -0.04em;
+}
+
+.futureEditor > :global([data-profile-theme-variant='preview'][data-profile-preset='terminal-zero']) :global([data-profile-preview-name])::before {
+  margin-right: 0.25em;
+  color: #80e594;
+  content: '>';
+}
+
+.futureEditor > :global([data-profile-theme-variant='preview'][data-profile-preset='terminal-zero']) :global([data-profile-preview-stats]) {
+  background: rgb(5 13 8 / 91%);
+  border: 1px solid rgb(125 226 145 / 28%);
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.futureEditor > :global([data-profile-theme-variant='preview'][data-profile-preset='terminal-zero']) :global([data-profile-preview-stats]) dd {
+  color: #a5efb3;
+}
+
+.futureEditor > :global([data-profile-theme-variant='preview'][data-profile-preset='quantum-core']) :global([data-profile-preview-avatar]) {
+  color: #f6fbff;
+  background: linear-gradient(145deg, #62788f, #17325c 59%, #2367ec);
+  border: 1px solid rgb(255 255 255 / 68%);
+  border-radius: 0.5rem 1.3rem 0.5rem 1.3rem;
+  box-shadow: 0 1rem 2.3rem rgb(31 51 78 / 20%);
+}
+
+.futureEditor > :global([data-profile-theme-variant='preview'][data-profile-preset='quantum-core']) :global([data-profile-preview-name]) {
+  font-weight: 820;
+  letter-spacing: -0.07em;
+}
+
+.futureEditor > :global([data-profile-theme-variant='preview'][data-profile-preset='quantum-core']) :global([data-profile-preview-stats]) {
+  color: #122038;
+  background: rgb(244 247 251 / 91%);
+  border-color: rgb(47 76 111 / 16%);
+  border-radius: 0.35rem;
+  box-shadow:
+    inset 0 1px 0 #fff,
+    inset 0 -0.28rem 0 rgb(27 58 94 / 4%);
+  backdrop-filter: none;
+}
+
+.futureEditor :global([data-theme-swatch][data-preset='spatial-orbit']) {
+  background: linear-gradient(104deg, #fbfbfd 0 56%, #e6ebf2 56% 100%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 92%);
+}
+
+.futureEditor :global([data-theme-swatch][data-preset='candy-cloud']) {
+  background: linear-gradient(112deg, #fffaf5 0 55%, #f9d9e4 55% 78%, #e9d9f4 100%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 88%);
+}
+
+.futureEditor :global([data-theme-swatch][data-preset='neon-district']) {
+  background: linear-gradient(101deg, #05070d 0 61%, #0a1122 61% 82%, #101c2c 100%);
+  box-shadow: inset 0 0 1.4rem rgb(70 219 238 / 7%);
+}
+
+.futureEditor :global([data-theme-swatch][data-preset='terminal-zero']) {
+  background: #070a08;
+  box-shadow:
+    inset 0 0 1.2rem rgb(125 226 145 / 7%),
+    inset 0 1.25rem 0 rgb(125 226 145 / 2%);
+}
+
+.futureEditor :global([data-theme-swatch][data-preset='quantum-core']) {
+  background: linear-gradient(108deg, #f7f9fc 0 55%, #d6dee8 55% 100%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 90%);
+}
+
+@media (hover: hover) {
+  .futureEditor :global([data-theme-swatch]) :global([data-theme-layer]) {
+    transition: translate 420ms var(--future-preview-ease), scale 420ms var(--future-preview-ease);
+  }
+
+  .futureEditor :global([data-theme-swatch]):hover :global([data-theme-layer='one']) {
+    translate: -0.2rem 0;
+    scale: 1.015;
+  }
+}
+
+@media (width < 48rem) {
+  .futureEditor > :global([data-profile-theme-variant='preview'][data-profile-preset='candy-cloud']) :global([data-profile-preview-stats]) {
+    rotate: 0deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .futureEditor :global([data-theme-swatch]) :global([data-theme-layer]) {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,361 @@
+.page {
+  --email-accent: color-mix(in oklab, var(--admin-accent) 86%, #1368e8);
+  --email-accent-soft: color-mix(in oklab, var(--email-accent) 9%, var(--admin-surface));
+}
+
+.headerStatus {
+  display: inline-grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.65rem;
+  min-width: 10.5rem;
+  align-items: center;
+  padding: 0.65rem 0.8rem;
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-control);
+}
+
+.headerStatus > span:last-child,
+.metric > span:last-child,
+.deliveryResult > span {
+  min-width: 0;
+}
+
+.headerStatus strong,
+.headerStatus small,
+.metric small,
+.metric strong,
+.metric em,
+.deliveryResult strong,
+.deliveryResult small,
+.deliveryResult em {
+  display: block;
+}
+
+.headerStatus strong {
+  color: var(--admin-foreground);
+  font-size: 0.75rem;
+  font-weight: 720;
+}
+
+.headerStatus small {
+  margin-top: 0.08rem;
+  color: var(--admin-muted);
+  font-size: 0.66rem;
+}
+
+.statusDot {
+  width: 0.58rem;
+  height: 0.58rem;
+  background: var(--admin-warning);
+  border: 2px solid var(--admin-surface);
+  border-radius: 999px;
+  box-shadow: 0 0 0 0.22rem color-mix(in oklab, var(--admin-warning) 18%, transparent);
+}
+
+.headerStatus[data-ready='true'] .statusDot {
+  background: var(--admin-success);
+  box-shadow: 0 0 0 0.22rem color-mix(in oklab, var(--admin-success) 18%, transparent);
+}
+
+.overview {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.metric {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.75rem;
+  min-width: 0;
+  align-items: center;
+  padding: 0.9rem 1rem;
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-panel);
+  box-shadow: 0 1px 1px color-mix(in oklab, var(--admin-foreground) 4%, transparent);
+}
+
+.metricIcon,
+.sectionHeading > span,
+.diagnosticHeading > span {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  color: var(--email-accent);
+  background: var(--email-accent-soft);
+  border: 1px solid color-mix(in oklab, var(--email-accent) 13%, var(--admin-border));
+}
+
+.metricIcon {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 0.65rem;
+}
+
+.metricIcon svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.metric small {
+  color: var(--admin-muted);
+  font-size: 0.66rem;
+  font-weight: 650;
+}
+
+.metric strong {
+  margin-top: 0.15rem;
+  overflow: hidden;
+  color: var(--admin-foreground);
+  font-size: 0.78rem;
+  font-weight: 720;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.metric em {
+  margin-top: 0.08rem;
+  overflow: hidden;
+  color: var(--admin-muted);
+  font-size: 0.64rem;
+  font-style: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 20.5rem);
+  gap: 1rem;
+  align-items: start;
+}
+
+.settingsColumn,
+.settingsForm {
+  min-width: 0;
+}
+
+.settingsForm {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.panel,
+.diagnosticPanel {
+  min-width: 0;
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius-panel);
+  box-shadow: 0 1px 2px color-mix(in oklab, var(--admin-foreground) 4%, transparent);
+}
+
+.panel {
+  padding: 1.15rem;
+}
+
+.sectionHeading,
+.diagnosticHeading {
+  display: flex;
+  min-width: 0;
+  gap: 0.72rem;
+  align-items: flex-start;
+}
+
+.sectionHeading {
+  margin-bottom: 1rem;
+}
+
+.sectionHeading > span,
+.diagnosticHeading > span {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.58rem;
+}
+
+.sectionHeading svg,
+.diagnosticHeading svg {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+
+.sectionHeading > div,
+.diagnosticHeading > div {
+  min-width: 0;
+}
+
+.sectionHeading h2,
+.diagnosticHeading h2 {
+  margin: 0;
+  color: var(--admin-foreground);
+  font-size: 0.82rem;
+  font-weight: 740;
+  letter-spacing: -0.01em;
+}
+
+.sectionHeading p,
+.diagnosticPanel > p {
+  color: var(--admin-muted);
+  font-size: 0.7rem;
+  line-height: 1.55;
+}
+
+.sectionHeading p {
+  margin: 0.18rem 0 0;
+}
+
+.diagnostics {
+  position: sticky;
+  top: 1rem;
+  display: grid;
+  min-width: 0;
+  gap: 0.75rem;
+}
+
+.diagnosticPanel {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1rem;
+}
+
+.diagnosticHeading {
+  align-items: center;
+}
+
+.diagnosticHeading small {
+  display: block;
+  margin-bottom: 0.06rem;
+  color: var(--email-accent);
+  font-size: 0.6rem;
+  font-weight: 760;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.diagnosticPanel > p {
+  margin: -0.12rem 0 0;
+}
+
+.deliveryPanel {
+  background:
+    linear-gradient(180deg, var(--email-accent-soft), transparent 7rem),
+    var(--admin-surface);
+  border-color: color-mix(in oklab, var(--email-accent) 17%, var(--admin-border));
+}
+
+.deliveryResult {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.62rem;
+  align-items: start;
+  padding: 0.72rem;
+  color: var(--email-accent);
+  background: color-mix(in oklab, var(--email-accent) 7%, var(--admin-surface));
+  border: 1px solid color-mix(in oklab, var(--email-accent) 17%, var(--admin-border));
+  border-radius: 0.62rem;
+}
+
+.deliveryResult > svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  margin-top: 0.08rem;
+}
+
+.deliveryResult strong {
+  font-size: 0.7rem;
+}
+
+.deliveryResult small {
+  margin-top: 0.08rem;
+  overflow-wrap: anywhere;
+  color: var(--admin-muted);
+  font-size: 0.62rem;
+}
+
+.deliveryResult em {
+  margin-top: 0.45rem;
+  color: var(--admin-muted);
+  font-size: 0.62rem;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+.diagnosticNote {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.55rem;
+  align-items: start;
+  padding: 0.75rem 0.8rem;
+  color: var(--admin-muted);
+  background: color-mix(in oklab, var(--admin-success) 6%, var(--admin-surface));
+  border: 1px solid color-mix(in oklab, var(--admin-success) 14%, var(--admin-border));
+  border-radius: var(--admin-radius-control);
+}
+
+.diagnosticNote[data-warning='true'] {
+  background: color-mix(in oklab, var(--admin-warning) 7%, var(--admin-surface));
+  border-color: color-mix(in oklab, var(--admin-warning) 17%, var(--admin-border));
+}
+
+.diagnosticNote svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  margin-top: 0.08rem;
+}
+
+.diagnosticNote p {
+  margin: 0;
+  font-size: 0.65rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 959px) {
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .diagnostics {
+    position: static;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .diagnosticNote {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 639px) {
+  .headerStatus {
+    width: 100%;
+  }
+
+  .overview,
+  .diagnostics {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .overview {
+    gap: 0.55rem;
+  }
+
+  .metric {
+    padding: 0.8rem 0.85rem;
+  }
+
+  .panel,
+  .diagnosticPanel {
+    padding: 0.9rem;
+  }
+
+  .diagnosticNote {
+    grid-column: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page * {
+    scroll-behavior: auto;
+  }
+}

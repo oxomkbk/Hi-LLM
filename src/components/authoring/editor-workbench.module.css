@@ -1,0 +1,372 @@
+.header {
+  display: flex;
+  min-height: 3.6rem;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.85rem 0.6rem 1.05rem;
+  background: var(--surface);
+  border-bottom: 1px solid color-mix(in oklab, var(--border) 72%, transparent);
+}
+
+.identity,
+.meta,
+.saveState,
+.saveButton {
+  display: inline-flex;
+  align-items: center;
+}
+
+.identity {
+  min-width: 0;
+  gap: 0.7rem;
+}
+
+.headerActions {
+  display: flex;
+  min-width: 0;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.controls {
+  display: inline-flex;
+  min-width: 0;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.identity > div {
+  display: grid;
+  min-width: 0;
+  gap: 0.12rem;
+}
+
+.identity strong {
+  overflow: hidden;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  font-weight: 760;
+  letter-spacing: -0.01em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.identity span:not(.statusDot) {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.statusDot {
+  width: 0.48rem;
+  height: 0.48rem;
+  flex: none;
+  background: color-mix(in oklab, var(--accent) 82%, #16a36a);
+  border-radius: 999px;
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 10%, transparent);
+}
+
+.meta {
+  flex: none;
+  gap: 0.7rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+.metric + .metric {
+  padding-left: 0.7rem;
+  border-left: 1px solid color-mix(in oklab, var(--border) 72%, transparent);
+}
+
+.saveState {
+  gap: 0.36rem;
+  color: var(--muted);
+  font-weight: 680;
+}
+
+.saveState i {
+  width: 0.4rem;
+  height: 0.4rem;
+  background: currentColor;
+  border-radius: 999px;
+}
+
+.saveState[data-save-state='saving'] { color: #b7791f; }
+.saveState[data-save-state='saved'] { color: #21865b; }
+.saveState[data-save-state='error'] { color: #c53d46; }
+
+.saveButton {
+  gap: 0.42rem;
+  min-height: 2rem;
+  padding-inline: 0.65rem;
+  color: var(--foreground);
+  border: 1px solid color-mix(in oklab, var(--border) 82%, transparent);
+  border-radius: 0.48rem;
+}
+
+.saveButton kbd {
+  padding: 0.1rem 0.3rem;
+  font-family: inherit;
+  font-size: 0.58rem;
+  color: var(--muted);
+  background: var(--surface-secondary);
+  border-radius: 0.28rem;
+}
+
+.outline {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  flex-direction: column;
+  color: var(--muted);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.sidebarTabs {
+  display: flex;
+  height: 2.75rem;
+  flex: none;
+  gap: 1.15rem;
+  padding-inline: 1rem;
+  border-bottom: 1px solid color-mix(in oklab, var(--border) 68%, transparent);
+}
+
+.sidebarTabs button {
+  position: relative;
+  min-width: 2.2rem;
+  padding-inline: 0.05rem;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.sidebarTabs button::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  background: transparent;
+  content: '';
+}
+
+.sidebarTabs button[aria-selected='true'] {
+  color: var(--foreground);
+}
+
+.sidebarTabs button[aria-selected='true']::after {
+  background: var(--foreground);
+}
+
+.sidebarContent {
+  flex: 1;
+  min-height: 0;
+  padding: 1rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in oklab, var(--muted) 24%, transparent) transparent;
+}
+
+.sidebarContent::-webkit-scrollbar { width: 6px; }
+.sidebarContent::-webkit-scrollbar-thumb { background: color-mix(in oklab, var(--muted) 24%, transparent); border-radius: 999px; }
+
+.sidebarSearch {
+  display: flex;
+  position: sticky;
+  z-index: 2;
+  top: -1rem;
+  height: 2.2rem;
+  gap: 0.45rem;
+  align-items: center;
+  padding-inline: 0.6rem;
+  margin-bottom: 1.4rem;
+  background: color-mix(in oklab, var(--surface) 96%, transparent);
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid color-mix(in oklab, var(--border) 74%, transparent);
+  border-radius: 0.42rem;
+}
+
+.sidebarSearch:focus-within {
+  border-color: color-mix(in oklab, var(--foreground) 38%, var(--border));
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--foreground) 5%, transparent);
+}
+
+.sidebarSearch svg {
+  width: 0.85rem;
+  height: 0.85rem;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.sidebarSearch input {
+  width: 100%;
+  min-width: 0;
+  color: var(--foreground);
+  font-size: 0.7rem;
+  background: transparent;
+  outline: none;
+}
+
+.sidebarSearch input::placeholder {
+  color: color-mix(in oklab, var(--muted) 76%, transparent);
+}
+
+.outlineHeading {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 760;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.outlineHeading small {
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.outline ol {
+  display: grid;
+  gap: 0.16rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.outline li[data-level='3'] { padding-left: 0.55rem; }
+.outline li[data-level='4'] { padding-left: 1.1rem; }
+
+.outline button {
+  display: block;
+  width: 100%;
+  overflow: visible;
+  padding: 0.38rem 0.45rem;
+  color: inherit;
+  font-size: 0.74rem;
+  line-height: 1.35;
+  text-align: left;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  border-radius: 0;
+  transition: color 140ms ease, background 140ms ease;
+}
+
+.outlineEmpty {
+  max-width: 10rem;
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.55;
+  color: color-mix(in oklab, var(--muted) 78%, transparent);
+}
+
+.outline li[data-active='true'] button {
+  color: color-mix(in oklab, var(--accent) 84%, var(--foreground));
+  background: transparent;
+  font-weight: 700;
+}
+
+.outline li[data-active='true'] {
+  border-left: 2px solid var(--accent);
+}
+
+.outline li[data-active='true'] button {
+  padding-left: calc(0.45rem - 2px);
+}
+
+.outline button:hover {
+  color: var(--foreground);
+  background: transparent;
+}
+
+.outline button:focus-visible {
+  color: var(--foreground);
+  background: transparent;
+  outline: 2px solid color-mix(in oklab, var(--accent) 64%, transparent);
+  outline-offset: -2px;
+}
+
+.blockGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.blockGroup + .blockGroup {
+  padding-top: 1.25rem;
+  margin-top: 1.25rem;
+  border-top: 1px solid color-mix(in oklab, var(--border) 68%, transparent);
+}
+
+.blockCard {
+  display: flex;
+  min-height: 4.1rem;
+  flex-direction: column;
+  gap: 0.35rem;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0.62rem 0.68rem;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid color-mix(in oklab, var(--border) 74%, transparent);
+  border-radius: 0.42rem;
+  transition: color 140ms ease, border-color 140ms ease, background 140ms ease, transform 140ms ease;
+}
+
+.blockCard svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.blockCard span {
+  font-size: 0.66rem;
+  font-weight: 650;
+}
+
+.blockCard:hover {
+  color: var(--foreground);
+  background: var(--surface-secondary);
+  border-color: color-mix(in oklab, var(--foreground) 32%, var(--border));
+  transform: translateY(-1px);
+}
+
+.blockCard:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--accent) 64%, transparent);
+  outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+  .header { align-items: flex-start; }
+  .headerActions { align-items: flex-end; flex-direction: column; gap: 0.45rem; }
+  .meta { flex-wrap: wrap; justify-content: flex-end; white-space: normal; }
+  .metric { display: none; }
+
+  .outline { width: 100%; }
+}
+
+@media (max-width: 560px) {
+  .header { padding-inline: 0.75rem; }
+  .headerActions { width: 100%; align-items: stretch; }
+  .controls { justify-content: flex-end; }
+  .meta { gap: 0.35rem; }
+  .saveButton { padding-inline: 0.5rem; }
+  .saveButton kbd { display: none; }
+
+  .outline { width: 100%; border-right: 0; border-bottom: 1px solid color-mix(in oklab, var(--border) 68%, transparent); }
+  .sidebarContent { padding: 0.8rem; }
+  .sidebarSearch { margin-bottom: 0.9rem; }
+}

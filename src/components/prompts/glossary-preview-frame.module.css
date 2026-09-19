@@ -1,0 +1,54 @@
+.root {
+  position: relative;
+  width: 100%;
+  min-height: 180px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface-secondary);
+}
+
+.frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+  border: 0;
+  pointer-events: none;
+}
+
+.compact,
+.compact .frame,
+.compact .placeholder,
+.compact .unavailable {
+  min-height: 92px;
+}
+
+.placeholder {
+  display: block;
+  width: 100%;
+  min-height: 180px;
+  background: linear-gradient(100deg, transparent 25%, color-mix(in srgb, var(--foreground) 5%, transparent) 45%, transparent 65%);
+  background-size: 220% 100%;
+  animation: preview-loading 1.6s ease-in-out infinite;
+}
+
+.unavailable {
+  display: grid;
+  min-height: 180px;
+  margin: 0;
+  place-items: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .placeholder {
+    animation: none;
+  }
+}
+
+@keyframes preview-loading {
+  from { background-position: 100% 0; }
+  to { background-position: -100% 0; }
+}

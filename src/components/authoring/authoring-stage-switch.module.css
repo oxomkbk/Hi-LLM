@@ -1,0 +1,157 @@
+.root {
+  display: grid;
+  grid-template-columns: minmax(13rem, 1fr) auto auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.7rem;
+  margin-bottom: 1.25rem;
+  background: transparent;
+  border-bottom: 1px solid color-mix(in oklab, var(--border) 76%, transparent);
+}
+
+.intro {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+  padding-inline: 0.65rem;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.intro strong {
+  overflow: hidden;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 0.68rem;
+}
+
+.tabs {
+  display: inline-flex;
+  gap: 0.2rem;
+  padding: 0;
+  background: transparent;
+}
+
+.tab {
+  min-width: 6.6rem;
+  min-height: 2.35rem;
+  gap: 0.4rem;
+  padding: 0.2rem 0.7rem 0.45rem;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  font-size: 0.74rem;
+  font-weight: 750;
+}
+
+.tab svg {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.tab.active {
+  color: var(--foreground);
+  background: transparent;
+  border-bottom-color: var(--foreground);
+  box-shadow: none;
+}
+
+.completion {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0.15rem 0.45rem;
+  align-items: center;
+  min-width: 8.8rem;
+  padding: 0.2rem 0;
+  color: var(--muted);
+  font-size: 0.68rem;
+  white-space: nowrap;
+}
+
+.completion b {
+  color: var(--foreground);
+  font-variant-numeric: tabular-nums;
+}
+
+.completionIcon {
+  grid-row: span 2;
+  display: grid;
+  place-items: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  color: var(--success);
+  background: transparent;
+  border-radius: 0;
+}
+
+.completionIcon svg {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+.progress {
+  display: block;
+  width: 5.5rem;
+  height: 0.25rem;
+  overflow: hidden;
+  background: color-mix(in oklab, var(--border) 60%, transparent);
+  border-radius: 999px;
+}
+
+.progress i {
+  display: block;
+  height: 100%;
+  background: var(--success);
+  border-radius: inherit;
+  transition: width 180ms ease;
+}
+
+@media (max-width: 48rem) {
+  .root {
+    grid-template-columns: 1fr auto;
+  }
+
+  .intro {
+    grid-column: 1 / -1;
+  }
+
+  .completion {
+    justify-self: end;
+  }
+}
+
+@media (max-width: 30rem) {
+  .root {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .tabs,
+  .tab {
+    width: 100%;
+  }
+
+  .tab {
+    justify-content: center;
+  }
+
+  .completion {
+    justify-self: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress i { transition: none; }
+}

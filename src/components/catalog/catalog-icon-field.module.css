@@ -1,0 +1,121 @@
+.field {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.labelRow {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.labelRow small {
+  font-size: 0.7rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.uploadSurface {
+  display: flex;
+  min-width: 0;
+  gap: 0.9rem;
+  align-items: center;
+  padding: 0.85rem;
+  background: color-mix(in oklab, var(--surface-secondary) 68%, var(--surface));
+  border-radius: 0.9rem;
+}
+
+.preview {
+  display: grid;
+  width: 4rem;
+  height: 4rem;
+  flex: none;
+  place-items: center;
+  overflow: hidden;
+  color: color-mix(in oklab, var(--accent) 72%, var(--foreground));
+  background: color-mix(in oklab, var(--accent) 9%, var(--surface));
+  border-radius: 0.9rem;
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--border) 65%, transparent);
+}
+
+.preview img {
+  width: 100%;
+  height: 100%;
+  padding: 0.35rem;
+  object-fit: contain;
+  background: #fff;
+}
+
+.preview svg {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.uploadCopy {
+  min-width: 0;
+  flex: 1;
+}
+
+.uploadCopy strong,
+.uploadCopy span {
+  display: block;
+}
+
+.uploadCopy strong {
+  overflow: hidden;
+  font-size: 0.82rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.uploadCopy span {
+  margin-top: 0.25rem;
+  font-size: 0.7rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  flex: none;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.status {
+  min-height: 1rem;
+  font-size: 0.7rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.status[data-error="true"] {
+  color: var(--danger);
+}
+
+@media (max-width: 42rem) {
+  .labelRow,
+  .uploadSurface {
+    align-items: flex-start;
+  }
+
+  .labelRow {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .uploadSurface {
+    flex-wrap: wrap;
+  }
+
+  .uploadCopy {
+    width: calc(100% - 5rem);
+    flex: none;
+  }
+
+  .actions {
+    width: 100%;
+    padding-left: 4.9rem;
+  }
+}
